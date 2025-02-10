@@ -20,6 +20,7 @@
         <module>api</module>
         <module>service</module>
         <module>database</module>
+        <module>authentication</module>
     </modules>
     <url>https://demeter.advantest.com</url> <!-- Specifies the project's official homepage URL -->
     <licenses>
