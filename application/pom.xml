@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.advantest.demeter.application</groupId>
     <artifactId>application</artifactId>
-    <version>${project.parent.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>application</name>
     <description>application</description>
     <properties>
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.advantest.demeter.api</groupId>
             <artifactId>api</artifactId>
-            <version>${project.parent.version}</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

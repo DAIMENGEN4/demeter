@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.advantest.demeter.common</groupId>
     <artifactId>common</artifactId>
-    <version>${project.parent.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>common</name>
     <description>common</description>
 
