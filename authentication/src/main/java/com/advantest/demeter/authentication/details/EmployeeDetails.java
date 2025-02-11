@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Create on 2025/01/01
@@ -22,4 +23,12 @@ public class EmployeeDetails implements UserDetails {
     private String username;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
+
+    public static Optional<EmployeeDetails> parse(Object object) {
+        if (object instanceof EmployeeDetails) {
+            return Optional.of((EmployeeDetails) object);
+        } else {
+            return Optional.empty();
+        }
+    }
 }

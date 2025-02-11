@@ -1,6 +1,9 @@
 package com.advantest.demeter.authentication.service;
 
 import com.advantest.demeter.authentication.details.EmployeeDetails;
+import com.advantest.demeter.service.EmployeeService;
+import com.advantest.demeter.service.dto.EmployeeDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,16 +19,20 @@ import java.util.List;
  * Author: mengen.dai@outlook.com
  */
 @Service
+@RequiredArgsConstructor
 public class EmployeeDetailsService implements UserDetailsService {
+
+    private final EmployeeService employeeService;
 
     @Override
     public EmployeeDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if (username.equals("admin")) {
-            Long employeeId = 1L;
-            String password = new BCryptPasswordEncoder().encode("123456");
-            List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
-            return new EmployeeDetails(employeeId, username, password, authorities);
+        EmployeeDTO employee = employeeService.getEmployeeByAccount(username);
+        if (employee == null) {
+            throw new UsernameNotFoundException("User not found");
         }
-        throw new UsernameNotFoundException("User not found");
+        Long employeeId = employee.getId();
+        String password = new BCryptPasswordEncoder().encode(employee.getPassword());
+        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
+        return new EmployeeDetails(employeeId, username, password, authorities);
     }
 }
