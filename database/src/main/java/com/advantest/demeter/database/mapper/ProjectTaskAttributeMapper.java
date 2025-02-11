@@ -1,6 +1,6 @@
 package com.advantest.demeter.database.mapper;
 
-import com.advantest.demeter.database.entity.ProjectTaskAttributeEntity;
+import com.advantest.demeter.database.po.ProjectTaskAttributePO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
  * Author: mengen.dai@outlook.com
  */
 @Mapper
-public interface ProjectTaskAttributeMapper extends BaseMapper<ProjectTaskAttributeEntity> {
+public interface ProjectTaskAttributeMapper extends BaseMapper<ProjectTaskAttributePO> {
 }

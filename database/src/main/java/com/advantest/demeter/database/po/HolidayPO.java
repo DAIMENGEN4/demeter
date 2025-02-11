@@ -1,4 +1,4 @@
-package com.advantest.demeter.database.entity;
+package com.advantest.demeter.database.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -16,11 +16,15 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("TEAM_DB_TABLE")
-public class TeamEntity {
+@TableName("HOLIDAY_DB_TABLE")
+public class HolidayPO {
     private Long id;
-    private String teamName;
+    private String holidayName;
     private String description;
+    private String holidayDate;
+    private Integer holidayType;
+    private Boolean isRecurring;
+    private Integer countryCode;
     private Long creatorId;
     private Long updaterId;
     private LocalDateTime createDateTime;

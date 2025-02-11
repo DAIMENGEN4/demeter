@@ -1,6 +1,6 @@
 package com.advantest.demeter.service.impl;
 
-import com.advantest.demeter.database.entity.ProjectTaskEntity;
+import com.advantest.demeter.database.po.ProjectTaskPO;
 import com.advantest.demeter.database.mapper.*;
 import com.advantest.demeter.service.ProjectTaskService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class ProjectTaskServiceImpl extends ServiceImpl<ProjectTaskMapper, ProjectTaskEntity> implements ProjectTaskService {
+public class ProjectTaskServiceImpl extends ServiceImpl<ProjectTaskMapper, ProjectTaskPO> implements ProjectTaskService {
     private final ProjectTaskAttributeMapper taskAttributeMapper;
     private final ProjectTaskAttributeBooleanValueMapper taskAttributeBooleanValueMapper;
     private final ProjectTaskAttributeDatetimeValueMapper taskAttributeDatetimeValueMapper;

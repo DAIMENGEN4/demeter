@@ -1,6 +1,6 @@
 package com.advantest.demeter.database.mapper;
 
-import com.advantest.demeter.database.entity.HolidayEntity;
+import com.advantest.demeter.database.po.HolidayPO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
  * Author: mengen.dai@outlook.com
  */
 @Mapper
-public interface HolidayMapper extends BaseMapper<HolidayEntity> {
+public interface HolidayMapper extends BaseMapper<HolidayPO> {
 }

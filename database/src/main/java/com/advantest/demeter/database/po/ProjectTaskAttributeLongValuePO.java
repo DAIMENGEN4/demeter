@@ -1,4 +1,4 @@
-package com.advantest.demeter.database.entity;
+package com.advantest.demeter.database.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("PROJECT_TASK_ATTRIBUTE_LONG_VALUE_DB_TABLE")
-public class ProjectTaskAttributeLongValueEntity {
+public class ProjectTaskAttributeLongValuePO {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;

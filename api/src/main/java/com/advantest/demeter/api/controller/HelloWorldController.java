@@ -1,7 +1,7 @@
 package com.advantest.demeter.api.controller;
 
 import com.advantest.demeter.api.vo.HelloWorldVO;
-import com.advantest.demeter.database.entity.EmployeeEntity;
+import com.advantest.demeter.database.po.EmployeePO;
 import com.advantest.demeter.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +29,7 @@ public class HelloWorldController {
 
     @GetMapping("/hello")
     public ResponseEntity<HelloWorldVO> hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        EmployeeEntity employee = employeeService.getById(1);
+        EmployeePO employee = employeeService.getById(1);
         System.out.println(employee);
         return ResponseEntity.ok(new HelloWorldVO(counter.incrementAndGet(), String.format(template, name)));
     }

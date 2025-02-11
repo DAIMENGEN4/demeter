@@ -1,4 +1,4 @@
-package com.advantest.demeter.database.entity;
+package com.advantest.demeter.database.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -16,12 +16,12 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("PROJECT_TASK_ATTRIBUTE_DATETIME_VALUE_DB_TABLE")
-public class ProjectTaskAttributeDatetimeValueEntity {
+@TableName("PROJECT_TASK_ATTRIBUTE_FLOAT_VALUE_DB_TABLE")
+public class ProjectTaskAttributeFloatValuePO {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;
-    private String taskAttributeValue;
+    private Float taskAttributeValue;
     private Long projectId;
     private Long creatorId;
     private Long updaterId;

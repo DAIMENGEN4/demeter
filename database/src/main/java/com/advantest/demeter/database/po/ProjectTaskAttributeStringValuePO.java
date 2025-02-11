@@ -1,4 +1,4 @@
-package com.advantest.demeter.database.entity;
+package com.advantest.demeter.database.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -16,11 +16,13 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("DEPARTMENT_DB_TABLE")
-public class DepartmentEntity {
+@TableName("PROJECT_TASK_ATTRIBUTE_STRING_VALUE_DB_TABLE")
+public class ProjectTaskAttributeStringValuePO {
     private Long id;
-    private String departmentName;
-    private String description;
+    private Long taskId;
+    private Long taskAttributeId;
+    private String taskAttributeValue;
+    private Long projectId;
     private Long creatorId;
     private Long updaterId;
     private LocalDateTime createDateTime;

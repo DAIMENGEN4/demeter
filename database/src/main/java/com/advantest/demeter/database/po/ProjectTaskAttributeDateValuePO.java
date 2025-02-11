@@ -1,4 +1,4 @@
-package com.advantest.demeter.database.entity;
+package com.advantest.demeter.database.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -16,15 +16,13 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("HOLIDAY_DB_TABLE")
-public class HolidayEntity {
+@TableName("PROJECT_TASK_ATTRIBUTE_DATE_VALUE_DB_TABLE")
+public class ProjectTaskAttributeDateValuePO {
     private Long id;
-    private String holidayName;
-    private String description;
-    private String holidayDate;
-    private Integer holidayType;
-    private Boolean isRecurring;
-    private Integer countryCode;
+    private Long taskId;
+    private Long taskAttributeId;
+    private String taskAttributeValue;
+    private Long projectId;
     private Long creatorId;
     private Long updaterId;
     private LocalDateTime createDateTime;
