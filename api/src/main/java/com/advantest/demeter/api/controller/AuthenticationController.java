@@ -1,6 +1,6 @@
 package com.advantest.demeter.api.controller;
 
-import com.advantest.demeter.api.dto.LoginFormDTO;
+import com.advantest.demeter.service.dto.LoginFormDTO;
 import com.advantest.demeter.authentication.details.EmployeeDetails;
 import com.advantest.demeter.authentication.service.JwtService;
 import org.springframework.http.HttpStatus;
