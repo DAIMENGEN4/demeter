@@ -1,4 +1,4 @@
-package com.advantest.demeter.database.service;
+package com.advantest.demeter.service;
 
 import com.advantest.demeter.database.entity.HolidayEntity;
 import com.baomidou.mybatisplus.extension.service.IService;

@@ -1,8 +1,8 @@
-package com.advantest.demeter.service;
+package com.advantest.demeter.service.impl;
 
 import com.advantest.demeter.database.entity.ProjectTaskEntity;
 import com.advantest.demeter.database.mapper.*;
-import com.advantest.demeter.database.service.ProjectTaskService;
+import com.advantest.demeter.service.ProjectTaskService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
