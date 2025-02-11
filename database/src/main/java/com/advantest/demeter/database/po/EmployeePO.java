@@ -1,5 +1,7 @@
 package com.advantest.demeter.database.po;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +16,6 @@ import java.time.LocalDateTime;
  */
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @TableName("EMPLOYEE_DB_TABLE")
 public class EmployeePO {
@@ -27,6 +28,8 @@ public class EmployeePO {
     private Boolean isActive;
     private Long creatorId;
     private Long updaterId;
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;
+    @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateDateTime;
 }

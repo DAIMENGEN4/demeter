@@ -1,5 +1,7 @@
 package com.advantest.demeter.database.po;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +28,8 @@ public class ProjectTaskAttributePO {
     private Integer order;
     private Long creatorId;
     private Long updaterId;
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;
+    @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateDateTime;
 }

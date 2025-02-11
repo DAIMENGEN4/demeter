@@ -36,7 +36,7 @@ public record ProjectTaskTableSchema(
         @Column(name = "CREATE_DATE_TIME", columnDefinition = "varchar(19) DEFAULT '2025-01-01 00:00:00'", nullable = false)
         LocalDateTime createDateTime,
 
-        @Column(name = "UPDATE_DATE_TIME", columnDefinition = "varchar(19) DEFAULT '2025-01-01 00:00:00'", nullable = false)
+        @Column(name = "UPDATE_DATE_TIME", columnDefinition = "varchar(19)")
         LocalDateTime updateDateTime
 ) {
 }
