@@ -1,7 +1,7 @@
 package com.advantest.demeter.authentication.service;
 
 import com.advantest.demeter.authentication.details.EmployeeDetails;
-import com.advantest.demeter.service.dto.LoginFormDTO;
+import com.advantest.demeter.authentication.dto.LoginFormDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

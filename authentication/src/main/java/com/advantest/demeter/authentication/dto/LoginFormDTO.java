@@ -1,4 +1,4 @@
-package com.advantest.demeter.service.dto;
+package com.advantest.demeter.authentication.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

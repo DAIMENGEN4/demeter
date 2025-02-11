@@ -1,7 +1,7 @@
 package com.advantest.demeter.api.controller;
 
 import com.advantest.demeter.authentication.service.AuthenticationService;
-import com.advantest.demeter.service.dto.LoginFormDTO;
+import com.advantest.demeter.authentication.dto.LoginFormDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
