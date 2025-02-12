@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
@@ -26,6 +27,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/auth")
 public class AuthenticationController {
+    private static final String REFRESH_TOKEN_COOKIE_NAME = "refresh_token";
 
     private final AuthenticationService authenticationService;
 
@@ -34,7 +36,7 @@ public class AuthenticationController {
         try {
             LoginResponseDTO responseDTO = authenticationService.login(loginRequest);
             String refreshToken = responseDTO.refreshToken();
-            Cookie refreshCookie = new Cookie("refresh_token", refreshToken);
+            Cookie refreshCookie = new Cookie(REFRESH_TOKEN_COOKIE_NAME, refreshToken);
             refreshCookie.setHttpOnly(true);
             refreshCookie.setPath("/api/v1/auth/refresh");
             refreshCookie.setMaxAge(7 * 24 * 60 * 60);
@@ -51,13 +53,29 @@ public class AuthenticationController {
 
     @PostMapping("/refresh")
     public ResponseEntity<String> refreshToken(HttpServletRequest request) {
-        String refreshToken = authenticationService.refreshToken(request);
-        return ResponseEntity.ok(refreshToken);
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No refresh token");
+        }
+        String refreshToken = Arrays.stream(cookies)
+                .filter(c -> REFRESH_TOKEN_COOKIE_NAME.equals(c.getName()))
+                .findFirst()
+                .map(Cookie::getValue)
+                .orElse(null);
+        if (refreshToken == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No refresh token");
+        }
+        try {
+            String accessToken = authenticationService.refreshToken(refreshToken);
+            return ResponseEntity.ok(accessToken);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid refresh token");
+        }
     }
 
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
-        Cookie refreshCookie = new Cookie("refresh_token", "");
+        Cookie refreshCookie = new Cookie(REFRESH_TOKEN_COOKIE_NAME, "");
         refreshCookie.setHttpOnly(true);
         refreshCookie.setPath("/api/v1/auth/refresh");
         refreshCookie.setMaxAge(0);
