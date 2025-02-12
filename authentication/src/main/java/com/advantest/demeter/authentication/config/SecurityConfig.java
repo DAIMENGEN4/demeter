@@ -1,7 +1,9 @@
 package com.advantest.demeter.authentication.config;
 
+import com.advantest.demeter.authentication.entrypoint.CustomAuthenticationEntryPoint;
 import com.advantest.demeter.authentication.filter.JwtAuthenticationFilter;
 import com.advantest.demeter.authentication.service.EmployeeDetailsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,15 +29,11 @@ import java.util.List;
  */
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
-
     private final EmployeeDetailsService employeeDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-
-    public SecurityConfig(EmployeeDetailsService employeeDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter) {
-        this.employeeDetailsService = employeeDetailsService;
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-    }
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
     public AuthenticationManager authenticationManager(PasswordEncoder passwordEncoder) {
@@ -59,6 +57,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth/login", "/api/v1/auth/refresh", "/public/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))
                 .httpBasic(Customizer.withDefaults());
 
         return http.build();
