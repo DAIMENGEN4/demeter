@@ -27,6 +27,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/auth")
 public class AuthenticationController {
+    private static final String COOKIE_PATH = "/api/v1/auth/refresh";
     private static final String REFRESH_TOKEN_COOKIE_NAME = "refresh_token";
 
     private final AuthenticationService authenticationService;
@@ -38,7 +39,7 @@ public class AuthenticationController {
             String refreshToken = responseDTO.refreshToken();
             Cookie refreshCookie = new Cookie(REFRESH_TOKEN_COOKIE_NAME, refreshToken);
             refreshCookie.setHttpOnly(true);
-            refreshCookie.setPath("/api/v1/auth/refresh");
+            refreshCookie.setPath(COOKIE_PATH);
             refreshCookie.setMaxAge(7 * 24 * 60 * 60);
             response.addCookie(refreshCookie);
             return ResponseEntity.ok(LoginResponseVO.from(responseDTO));
@@ -77,7 +78,7 @@ public class AuthenticationController {
     public ResponseEntity<String> logout(HttpServletResponse response) {
         Cookie refreshCookie = new Cookie(REFRESH_TOKEN_COOKIE_NAME, "");
         refreshCookie.setHttpOnly(true);
-        refreshCookie.setPath("/api/v1/auth/refresh");
+        refreshCookie.setPath(COOKIE_PATH);
         refreshCookie.setMaxAge(0);
         response.addCookie(refreshCookie);
         return ResponseEntity.ok("Logout successful");
