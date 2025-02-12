@@ -29,24 +29,30 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 )
-
-axiosInstance.interceptors.response.use(response => response, async (error) => {
-    if (error.response && error.response.status === 401) {
-        try {
-            axiosInstance.post("api/v1/auth/refresh").then(response => {
-                log.error(`Refresh token success, token: ${response.data}`);
-                sessionStorage.setItem("token", response.data);
-                error.config.headers.Authorization = `Bearer ${response.data}`;
-                axiosInstance.request(error.config)
-            }).catch(error => {
-                log.error(`Refresh token failed, error: ${error}`);
-            });
-        } catch (error) {
-            log.error(`Refresh token failed, error: ${error}`);
+let isRefreshing = false;
+axiosInstance.interceptors.response.use(
+    response => response,
+    async (error) => {
+        if (error.response && error.response.status === 401) {
+            if (!isRefreshing) {
+                isRefreshing = true;
+                try {
+                    const response = await axiosInstance.post("api/v1/auth/refresh");
+                    const newToken: string = response.data;
+                    sessionStorage.setItem("token", newToken);
+                    error.config.headers.Authorization = `Bearer ${response.data}`;
+                    return axiosInstance.request(error.config);
+                } catch (error) {
+                    log.warn(`Refresh token failed, error: ${error}`);
+                    sessionStorage.removeItem("token");
+                    window.location.href = "/login";
+                } finally {
+                    isRefreshing = false;
+                }
+            }
         }
-    }
-    return Promise.reject(error);
-});
+        return Promise.reject(error);
+    });
 
 export type RequestParams = Record<string, AnyType> | Array<AnyType>;
 
