@@ -13,7 +13,7 @@ public record LoginResponseVO(
     }
 
     public static LoginResponseVO from(LoginResponseDTO loginResponseDTO) {
-        String token = loginResponseDTO.token();
+        String token = loginResponseDTO.accessToken();
         String employeeName = loginResponseDTO.employeeName();
         String employeeId = loginResponseDTO.employeeId().toString();
         return new LoginResponseVO(token, employeeId, employeeName);

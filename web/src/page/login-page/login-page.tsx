@@ -19,7 +19,7 @@ export const LoginPage: React.FC = () => {
             values,
             (response: LoginResponseDTO) => {
                 success("Login Successfully").then(() => {
-                    localStorage.setItem("token", response.token);
+                    sessionStorage.setItem("token", response.token)
                     demeterDispatch(setEmployeeIdAction(response.employeeId));
                     demeterDispatch(setEmployeeNameAction(response.employeeName));
                     navigate("/home");

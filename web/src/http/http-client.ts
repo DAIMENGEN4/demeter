@@ -10,7 +10,7 @@ const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     config => {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         if (token) {
             config.headers["Authorization"] = `Bearer ${token}`;
         }
@@ -29,6 +29,24 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 )
+
+axiosInstance.interceptors.response.use(response => response, async (error) => {
+    if (error.response && error.response.status === 401) {
+        try {
+            axiosInstance.post("api/v1/auth/refresh").then(response => {
+                log.error(`Refresh token success, token: ${response.data}`);
+                sessionStorage.setItem("token", response.data);
+                error.config.headers.Authorization = `Bearer ${response.data}`;
+                axiosInstance.request(error.config)
+            }).catch(error => {
+                log.error(`Refresh token failed, error: ${error}`);
+            });
+        } catch (error) {
+            log.error(`Refresh token failed, error: ${error}`);
+        }
+    }
+    return Promise.reject(error);
+});
 
 export type RequestParams = Record<string, AnyType> | Array<AnyType>;
 

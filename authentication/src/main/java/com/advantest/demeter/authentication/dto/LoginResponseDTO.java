@@ -1,7 +1,8 @@
 package com.advantest.demeter.authentication.dto;
 
 public record LoginResponseDTO(
-        String token,
+        String accessToken,
+        String refreshToken,
         Long employeeId,
         String employeeName) {
 

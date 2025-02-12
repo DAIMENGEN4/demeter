@@ -19,9 +19,10 @@ import java.util.List;
 @Component
 public class JwtService {
     private static final String SECRET_KEY = "secret";
-    private static final int EXPIRATION_TIME = 24 * 60 * 60 * 1000;
+    private static final long ACCESS_EXPIRATION = 30 * 60 * 1000; // 30分钟内有效
+    private static final long REFRESH_EXPIRATION = 7 * 24 * 60 * 60 * 1000; // 7天有效
 
-    public String generateToken(EmployeeDetails details) {
+    private String generateToken(EmployeeDetails details, long expiration) {
         String[] authorities = details.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
@@ -36,8 +37,16 @@ public class JwtService {
                 .withClaim("employeeId", details.getEmployeeId())
                 .withClaim("employeeName", details.getEmployeeName())
                 .withArrayClaim("authorities", authorities)
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .withExpiresAt(new Date(System.currentTimeMillis() + expiration))
                 .sign(Algorithm.HMAC256(SECRET_KEY));
+    }
+
+    public String generateAccessToken(EmployeeDetails details) {
+        return generateToken(details, ACCESS_EXPIRATION);
+    }
+
+    public String generateRefreshToken(EmployeeDetails details) {
+        return generateToken(details, REFRESH_EXPIRATION);
     }
 
     public EmployeeDetails verifyToken(String token) {
@@ -48,10 +57,10 @@ public class JwtService {
                 .verify(token);
         String username = decodedJWT.getSubject();
         String password = decodedJWT.getClaim("password").asString();
-        String employeeId = decodedJWT.getClaim("employeeId").asString();
+        Long employeeId = decodedJWT.getClaim("employeeId").asLong();
         String employeeName = decodedJWT.getClaim("employeeName").asString();
         String[] authorities = decodedJWT.getClaim("authorities").asArray(String.class);
         List<SimpleGrantedAuthority> list = Arrays.stream(authorities).map(SimpleGrantedAuthority::new).toList();
-        return new EmployeeDetails(Long.parseLong(employeeId), username, password, employeeName, list);
+        return new EmployeeDetails(employeeId, username, password, employeeName, list);
     }
 }

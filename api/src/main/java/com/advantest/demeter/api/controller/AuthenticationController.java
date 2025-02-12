@@ -4,6 +4,9 @@ import com.advantest.demeter.api.vo.LoginResponseVO;
 import com.advantest.demeter.authentication.dto.LoginRequestDTO;
 import com.advantest.demeter.authentication.dto.LoginResponseDTO;
 import com.advantest.demeter.authentication.service.AuthenticationService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +30,15 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseVO> login(@RequestBody LoginRequestDTO loginRequest) {
+    public ResponseEntity<LoginResponseVO> login(@RequestBody LoginRequestDTO loginRequest, HttpServletResponse response) {
         try {
             LoginResponseDTO responseDTO = authenticationService.login(loginRequest);
+            String refreshToken = responseDTO.refreshToken();
+            Cookie refreshCookie = new Cookie("refresh_token", refreshToken);
+            refreshCookie.setHttpOnly(true);
+            refreshCookie.setPath("/api/v1/auth/refresh");
+            refreshCookie.setMaxAge(7 * 24 * 60 * 60);
+            response.addCookie(refreshCookie);
             return ResponseEntity.ok(LoginResponseVO.from(responseDTO));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(LoginResponseVO.defaultValue());
@@ -40,8 +49,19 @@ public class AuthenticationController {
         }
     }
 
+    @PostMapping("/refresh")
+    public ResponseEntity<String> refreshToken(HttpServletRequest request) {
+        String refreshToken = authenticationService.refreshToken(request);
+        return ResponseEntity.ok(refreshToken);
+    }
+
     @PostMapping("/logout")
-    public ResponseEntity<String> logout() {
+    public ResponseEntity<String> logout(HttpServletResponse response) {
+        Cookie refreshCookie = new Cookie("refresh_token", "");
+        refreshCookie.setHttpOnly(true);
+        refreshCookie.setPath("/api/v1/auth/refresh");
+        refreshCookie.setMaxAge(0);
+        response.addCookie(refreshCookie);
         return ResponseEntity.ok("Logout successful");
     }
 }
