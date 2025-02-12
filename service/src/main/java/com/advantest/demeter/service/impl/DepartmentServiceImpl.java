@@ -1,7 +1,7 @@
 package com.advantest.demeter.service.impl;
 
-import com.advantest.demeter.database.po.DepartmentPO;
 import com.advantest.demeter.database.mapper.DepartmentMapper;
+import com.advantest.demeter.database.po.DepartmentPO;
 import com.advantest.demeter.service.DepartmentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
