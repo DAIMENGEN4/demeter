@@ -1,7 +1,8 @@
 package com.advantest.demeter.authentication.service;
 
 import com.advantest.demeter.authentication.details.EmployeeDetails;
-import com.advantest.demeter.authentication.dto.LoginFormDTO;
+import com.advantest.demeter.authentication.dto.LoginRequestDTO;
+import com.advantest.demeter.authentication.dto.LoginResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,12 +24,13 @@ public class AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
 
-    public String login(LoginFormDTO loginForm) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginForm.getUsername(), loginForm.getPassword()));
+    public LoginResponseDTO login(LoginRequestDTO loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
         Optional<EmployeeDetails> optional = EmployeeDetails.parse(authentication.getPrincipal());
         if (optional.isPresent()) {
             EmployeeDetails employeeDetails = optional.get();
-            return jwtService.generateToken(employeeDetails);
+            String token = jwtService.generateToken(employeeDetails);
+            return new LoginResponseDTO(token, employeeDetails.getEmployeeId(), employeeDetails.getEmployeeName());
         }
         throw new NoSuchElementException("Failed to parse employee details");
     }

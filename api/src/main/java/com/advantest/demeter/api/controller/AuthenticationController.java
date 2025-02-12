@@ -1,7 +1,9 @@
 package com.advantest.demeter.api.controller;
 
+import com.advantest.demeter.api.vo.LoginResponseVO;
+import com.advantest.demeter.authentication.dto.LoginRequestDTO;
+import com.advantest.demeter.authentication.dto.LoginResponseDTO;
 import com.advantest.demeter.authentication.service.AuthenticationService;
-import com.advantest.demeter.authentication.dto.LoginFormDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,16 +27,21 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginFormDTO loginForm) {
+    public ResponseEntity<LoginResponseVO> login(@RequestBody LoginRequestDTO loginRequest) {
         try {
-            String token = authenticationService.login(loginForm);
-            return ResponseEntity.ok(token);
+            LoginResponseDTO responseDTO = authenticationService.login(loginRequest);
+            return ResponseEntity.ok(LoginResponseVO.from(responseDTO));
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(LoginResponseVO.defaultValue());
         } catch (NoSuchElementException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(LoginResponseVO.defaultValue());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(LoginResponseVO.defaultValue());
         }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+        return ResponseEntity.ok("Logout successful");
     }
 }

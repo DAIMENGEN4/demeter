@@ -33,6 +33,6 @@ public class EmployeeDetailsService implements UserDetailsService {
         Long employeeId = employee.getId();
         String password = new BCryptPasswordEncoder().encode(employee.getPassword());
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
-        return new EmployeeDetails(employeeId, username, password, authorities);
+        return new EmployeeDetails(employeeId, username, password, employee.getEmployeeName(), authorities);
     }
 }

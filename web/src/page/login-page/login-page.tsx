@@ -4,18 +4,25 @@ import {Button, Form, Input, Layout, Space} from "antd";
 import {useAntdMessage} from "@D/hooks/message/use-antd-message";
 import login_bg_image from "../../assets/images/jpeg/login-bg-image.jpeg";
 import login_logo_wr_image from "../../assets/images/jpg/login_logo_wr.jpg";
-import {EmployeeService} from "@D/http/service/employee-service.ts";
+import {AuthenticationService, LoginRequestDTO, LoginResponseDTO} from "@D/http/service/authentication-service.ts";
+import {useDemeterDispatch} from "@D/store/store.ts";
+import {useNavigate} from "react-router-dom";
+import {setEmployeeIdAction, setEmployeeNameAction} from "@D/store/features/employee-slice.ts";
 
 export const LoginPage: React.FC = () => {
     const {Content} = Layout;
+    const navigate = useNavigate();
     const {contextHolderMessage, success, failure} = useAntdMessage();
-    const onFinish = useCallback((values: { username: string, password: string }) => {
-        EmployeeService.getInstance().loginRequest(
-            values.username,
-            values.password,
-            (token: string) => {
+    const demeterDispatch = useDemeterDispatch()
+    const onFinish = useCallback((values: LoginRequestDTO) => {
+        AuthenticationService.getInstance().loginRequest(
+            values,
+            (response: LoginResponseDTO) => {
                 success("Login Successfully").then(() => {
-                    localStorage.setItem("token", token);
+                    localStorage.setItem("token", response.token);
+                    demeterDispatch(setEmployeeIdAction(response.employeeId));
+                    demeterDispatch(setEmployeeNameAction(response.employeeName));
+                    navigate("/home");
                 });
             },
             (error: Error) => {

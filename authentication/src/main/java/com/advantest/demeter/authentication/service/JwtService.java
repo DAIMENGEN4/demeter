@@ -34,6 +34,7 @@ public class JwtService {
                 .withSubject(details.getUsername())
                 .withClaim("password", details.getPassword())
                 .withClaim("employeeId", details.getEmployeeId())
+                .withClaim("employeeName", details.getEmployeeName())
                 .withArrayClaim("authorities", authorities)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC256(SECRET_KEY));
@@ -48,8 +49,9 @@ public class JwtService {
         String username = decodedJWT.getSubject();
         String password = decodedJWT.getClaim("password").asString();
         String employeeId = decodedJWT.getClaim("employeeId").asString();
+        String employeeName = decodedJWT.getClaim("employeeName").asString();
         String[] authorities = decodedJWT.getClaim("authorities").asArray(String.class);
         List<SimpleGrantedAuthority> list = Arrays.stream(authorities).map(SimpleGrantedAuthority::new).toList();
-        return new EmployeeDetails(Long.parseLong(employeeId), username, password, list);
+        return new EmployeeDetails(Long.parseLong(employeeId), username, password, employeeName, list);
     }
 }

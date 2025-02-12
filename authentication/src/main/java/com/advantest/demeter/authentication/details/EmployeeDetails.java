@@ -22,6 +22,7 @@ public class EmployeeDetails implements UserDetails {
     private Long employeeId;
     private String username;
     private String password;
+    private String employeeName;
     private Collection<? extends GrantedAuthority> authorities;
 
     public static Optional<EmployeeDetails> parse(Object object) {
