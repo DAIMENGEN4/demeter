@@ -4,19 +4,24 @@ import {Button, Form, Input, Layout, Space} from "antd";
 import {useAntdMessage} from "@D/hooks/message/use-antd-message";
 import login_bg_image from "../../assets/images/jpeg/login-bg-image.jpeg";
 import login_logo_wr_image from "../../assets/images/jpg/login_logo_wr.jpg";
-import {HttpClient} from "@D/http/http-client.ts";
+import {EmployeeService} from "@D/http/service/employee-service.ts";
 
 export const LoginPage: React.FC = () => {
     const {Content} = Layout;
     const {contextHolderMessage, success, failure} = useAntdMessage();
     const onFinish = useCallback((values: { username: string, password: string }) => {
-        const httpClient = new HttpClient();
-        httpClient.post("/login", {username: values.username, password: values.password}).then(data => {
-            console.log(data);
-            success("Login Success").then();
-        }).catch(error => {
-            failure(httpClient.parseResponseError(error)).then();
-        })
+        EmployeeService.getInstance().loginRequest(
+            values.username,
+            values.password,
+            (token: string) => {
+                success("Login Successfully").then(() => {
+                    localStorage.setItem("token", token);
+                });
+            },
+            (error: Error) => {
+                failure(error.message).then();
+            }
+        )
     }, [failure]);
 
     return (

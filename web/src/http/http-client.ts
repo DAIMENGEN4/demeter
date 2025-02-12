@@ -1,8 +1,9 @@
-import axios, {AxiosInstance, AxiosResponse} from "axios";
 import {AnyType} from "@D/types";
+import {log} from "@D/logging.ts";
+import axios, {AxiosInstance, AxiosResponse} from "axios";
 
 const axiosInstance: AxiosInstance = axios.create({
-    baseURL: "http://localhost:9090",
+    baseURL: "http://127.0.0.1:9090/api",
     timeout: 5000,
     withCredentials: true,
 });
@@ -33,35 +34,67 @@ export type RequestParams = Record<string, AnyType> | Array<AnyType>;
 
 export class HttpClient {
 
-    async get<T>(url: string, params?: RequestParams): Promise<T> {
-        const response: AxiosResponse<T> = await axiosInstance.get(url, {params}).catch(error => {
-            throw new Error(`Request failed, URL: ${url}, error: ${error}`);
-        });
-        return response.data;
+    static async get<T>(url: string, params?: RequestParams): Promise<T> {
+        try {
+            const response: AxiosResponse<T> = await axiosInstance.get(url, {params});
+            return response.data;
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                log.error(`Get request failed, URL: ${url}, error: ${error.message}`);
+                throw error;
+            } else {
+                log.error(`Unexpected error: ${String(error)}`);
+                throw new Error(`Unexpected error: ${String(error)}`);
+            }
+        }
     }
 
-    async post<T>(url: string, params?: RequestParams): Promise<T> {
-        const response: AxiosResponse<T> = await axiosInstance.post(url, params).catch(error => {
-            throw new Error(`Request failed, URL: ${url}, error: ${error}`);
-        });
-        return response.data;
+    static async post<T>(url: string, params?: RequestParams): Promise<T> {
+        try {
+            const response: AxiosResponse<T> = await axiosInstance.post(url, params);
+            return response.data;
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                log.error(`Post request failed, URL: ${url}, error: ${error.message}`);
+                throw error;
+            } else {
+                log.error(`Unexpected error: ${String(error)}`);
+                throw new Error(`Unexpected error: ${String(error)}`);
+            }
+        }
     }
 
-    async put<T>(url: string, params?: RequestParams): Promise<T> {
-        const response: AxiosResponse<T> = await axiosInstance.put(url, params).catch(error => {
-            throw new Error(`Request failed, URL: ${url}, error: ${error}`);
-        });
-        return response.data;
+    static async put<T>(url: string, params?: RequestParams): Promise<T> {
+        try {
+            const response: AxiosResponse<T> = await axiosInstance.put(url, params);
+            return response.data;
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                log.error(`Put request failed, URL: ${url}, error: ${error.message}`);
+                throw error;
+            } else {
+                log.error(`Unexpected error: ${String(error)}`);
+                throw new Error(`Unexpected error: ${String(error)}`);
+            }
+        }
     }
 
-    async delete<T>(url: string): Promise<T> {
-        const response: AxiosResponse<T> = await axiosInstance.delete(url).catch(error => {
-            throw new Error(`Request failed, URL: ${url}, error: ${error}`);
-        });
-        return response.data;
+    static async delete<T>(url: string): Promise<T> {
+        try {
+            const response: AxiosResponse<T> = await axiosInstance.delete(url);
+            return response.data;
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                log.error(`Delete request failed, URL: ${url}, error: ${error.message}`);
+                throw error;
+            } else {
+                log.error(`Unexpected error: ${String(error)}`);
+                throw new Error(`Unexpected error: ${String(error)}`);
+            }
+        }
     }
 
-    parseResponseError(error: Error): string {
+    static parseResponseError(error: Error): string {
         const errorPrefix = "error:";
         const errorIndex = error.message.indexOf(errorPrefix);
         if (errorIndex !== -1) {
