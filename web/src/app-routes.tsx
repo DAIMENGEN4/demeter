@@ -6,7 +6,7 @@ export const AppRoutes: React.FC = () => {
     return (
         <Routes>
             <Route path="/" element={<LoginPage/>}/>
-            <Route path="/login-page" element={<LoginPage/>}/>
+            <Route path="/login" element={<LoginPage/>}/>
         </Routes>
     )
 }
