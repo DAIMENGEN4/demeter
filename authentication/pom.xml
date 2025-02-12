@@ -22,10 +22,9 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.advantest.demeter.service</groupId>
-            <artifactId>service</artifactId>
+            <groupId>com.advantest.demeter.database</groupId>
+            <artifactId>database</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.auth0</groupId>

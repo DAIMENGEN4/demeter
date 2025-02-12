@@ -1,8 +1,9 @@
 package com.advantest.demeter.authentication.service;
 
 import com.advantest.demeter.authentication.details.EmployeeDetails;
-import com.advantest.demeter.service.EmployeeService;
-import com.advantest.demeter.service.dto.EmployeeDTO;
+import com.advantest.demeter.database.mapper.EmployeeMapper;
+import com.advantest.demeter.database.po.EmployeePO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,11 +23,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeDetailsService implements UserDetailsService {
 
-    private final EmployeeService employeeService;
+    private final EmployeeMapper employeeMapper;
 
     @Override
     public EmployeeDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        EmployeeDTO employee = employeeService.getEmployeeByAccount(username);
+        EmployeePO employee = this.getEmployeeByAccount(username);
         if (employee == null) {
             throw new UsernameNotFoundException("User not found");
         }
@@ -34,5 +35,10 @@ public class EmployeeDetailsService implements UserDetailsService {
         String password = new BCryptPasswordEncoder().encode(employee.getPassword());
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
         return new EmployeeDetails(employeeId, username, password, employee.getEmployeeName(), authorities);
+    }
+
+    private EmployeePO getEmployeeByAccount(String account) {
+        QueryWrapper<EmployeePO> queryWrapper = new QueryWrapper<EmployeePO>().eq("account", account);
+        return employeeMapper.selectOne(queryWrapper);
     }
 }
