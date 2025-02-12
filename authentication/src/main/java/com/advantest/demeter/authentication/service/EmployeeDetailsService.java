@@ -29,7 +29,7 @@ public class EmployeeDetailsService implements UserDetailsService {
     public EmployeeDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         EmployeePO employee = this.getEmployeeByAccount(username);
         if (employee == null) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("Employee not found");
         }
         Long employeeId = employee.getId();
         String password = new BCryptPasswordEncoder().encode(employee.getPassword());
