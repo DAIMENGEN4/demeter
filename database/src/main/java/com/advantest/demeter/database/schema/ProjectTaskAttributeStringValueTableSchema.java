@@ -36,10 +36,10 @@ public record ProjectTaskAttributeStringValueTableSchema(
         @Column(name = "UPDATER_ID")
         Long updaterId,
 
-        @Column(name = "CREATE_DATE_TIME", columnDefinition = "varchar(19) DEFAULT '2025-01-01 00:00:00'", nullable = false)
+        @Column(name = "CREATE_DATE_TIME", columnDefinition = "varchar(26) DEFAULT '2025-01-01 00:00:00'", nullable = false)
         LocalDateTime createDateTime,
 
-        @Column(name = "UPDATE_DATE_TIME", columnDefinition = "varchar(19)")
+        @Column(name = "UPDATE_DATE_TIME", columnDefinition = "varchar(26)")
         LocalDateTime updateDateTime
 ) {
 }
