@@ -27,7 +27,7 @@ public class EmployeeDetailsService implements UserDetailsService {
 
     @Override
     public EmployeeDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        EmployeePO employee = this.getEmployeeByAccount(username);
+        EmployeePO employee = this.getEmployeeByUsername(username);
         if (employee == null) {
             throw new UsernameNotFoundException("Employee not found");
         }
@@ -37,8 +37,8 @@ public class EmployeeDetailsService implements UserDetailsService {
         return new EmployeeDetails(employeeId, username, password, employee.getEmployeeName(), authorities);
     }
 
-    private EmployeePO getEmployeeByAccount(String account) {
-        QueryWrapper<EmployeePO> queryWrapper = new QueryWrapper<EmployeePO>().eq("account", account);
+    private EmployeePO getEmployeeByUsername(String username) {
+        QueryWrapper<EmployeePO> queryWrapper = new QueryWrapper<EmployeePO>().eq("username", username);
         return employeeMapper.selectOne(queryWrapper);
     }
 }

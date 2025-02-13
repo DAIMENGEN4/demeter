@@ -18,5 +18,5 @@ public interface EmployeeService extends IService<EmployeePO> {
 
     EmployeeDTO getEmployeeById(Long id);
 
-    EmployeeDTO getEmployeeByAccount(String account);
+    EmployeeDTO getEmployeeByUsername(String username);
 }

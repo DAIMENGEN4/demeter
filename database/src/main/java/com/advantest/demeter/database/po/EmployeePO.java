@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @TableName("EMPLOYEE_DB_TABLE")
 public class EmployeePO {
     private Long id;
-    private String account;
+    private String username;
     private String password;
     private String employeeName;
     private String email;

@@ -2,7 +2,7 @@ import {HttpClient} from "@D/http/http-client.ts";
 
 export interface EmployeeDTO {
     readonly id: string;
-    readonly account: string;
+    readonly username: string;
     readonly password: string;
     readonly employeeName: string;
     readonly email: string;

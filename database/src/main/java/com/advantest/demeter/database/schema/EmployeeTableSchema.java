@@ -18,8 +18,8 @@ public record EmployeeTableSchema(
         @Column(name = "ID", unique = true)
         Long id,
 
-        @Column(name = "ACCOUNT", columnDefinition = "varchar(255)", nullable = false)
-        String account,
+        @Column(name = "USERNAME", columnDefinition = "varchar(255)", nullable = false)
+        String username,
 
         @Column(name = "PASSWORD", columnDefinition = "varchar(255)", nullable = false)
         String password,

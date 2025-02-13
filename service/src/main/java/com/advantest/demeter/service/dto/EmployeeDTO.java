@@ -8,7 +8,7 @@ import com.advantest.demeter.database.po.EmployeePO;
  */
 public record EmployeeDTO(
         Long id,
-        String account,
+        String username,
         String password,
         String employeeName,
         String email,
@@ -18,7 +18,7 @@ public record EmployeeDTO(
     public static EmployeeDTO parse(EmployeePO employeePO) {
         return new EmployeeDTO(
                 employeePO.getId(),
-                employeePO.getAccount(),
+                employeePO.getUsername(),
                 employeePO.getPassword(),
                 employeePO.getEmployeeName(),
                 employeePO.getEmail(),

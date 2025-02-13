@@ -39,7 +39,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeePO>
         // createDateTime mybatis-plus 自动插入, 对于新增, updaterId 和 updaterDateTime 为空!
         EmployeePO employeePO = EmployeePO.builder()
                 .id(employeeId)
-                .account(employeeDTO.account())
+                .username(employeeDTO.username())
                 .password(employeeDTO.password())
                 .employeeName(employeeDTO.employeeName())
                 .email(employeeDTO.email())
@@ -54,7 +54,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeePO>
     public Boolean createEmployee(EmployeeDTO employeeDTO) {
         // id, creatorId, createDateTime mybatis-plus 自动插入, 对于新增, updaterId 和 updaterDateTime 为空!
         EmployeePO employeePO = EmployeePO.builder()
-                .account(employeeDTO.account())
+                .username(employeeDTO.username())
                 .password(employeeDTO.password())
                 .employeeName(employeeDTO.employeeName())
                 .email(employeeDTO.email())
@@ -71,8 +71,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeePO>
     }
 
     @Override
-    public EmployeeDTO getEmployeeByAccount(String account) {
-        QueryWrapper<EmployeePO> queryWrapper = new QueryWrapper<EmployeePO>().eq("account", account);
+    public EmployeeDTO getEmployeeByUsername(String username) {
+        QueryWrapper<EmployeePO> queryWrapper = new QueryWrapper<EmployeePO>().eq("username", username);
         EmployeePO employeePO = getOne(queryWrapper);
         return EmployeeDTO.parse(employeePO);
     }
