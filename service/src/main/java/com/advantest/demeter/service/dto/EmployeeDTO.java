@@ -15,7 +15,7 @@ public record EmployeeDTO(
         String phone,
         Boolean isActive
 ) {
-    public static EmployeeDTO parse(EmployeePO employeePO) {
+    public static EmployeeDTO of(EmployeePO employeePO) {
         return new EmployeeDTO(
                 employeePO.getId(),
                 employeePO.getUsername(),

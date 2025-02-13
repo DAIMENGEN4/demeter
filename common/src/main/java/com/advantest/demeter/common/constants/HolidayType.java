@@ -21,11 +21,12 @@ public enum HolidayType {
     }
 
     public static HolidayType fromInt(int value) {
-        for (HolidayType type : values()) {
-            if (type.value == value) {
-                return type;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Invalid HolidayType field: %d. Valid values are: %d (NATIONAL_HOLIDAY), %d (COMPANY_HOLIDAY), %d (WEEKLY_HOLIDAY), %d (SPECIAL_HOLIDAY).", value, 1, 2, 3, 4));
+        return switch (value) {
+            case 1 -> NATIONAL_HOLIDAY;
+            case 2 -> COMPANY_HOLIDAY;
+            case 3 -> WEEKLY_HOLIDAY;
+            case 4 -> SPECIAL_HOLIDAY;
+            default -> throw new IllegalArgumentException(String.format("Invalid HolidayType field: %d. Valid values are: 1 (NATIONAL_HOLIDAY), 2 (COMPANY_HOLIDAY), 3 (WEEKLY_HOLIDAY), 4 (SPECIAL_HOLIDAY).", value));
+        };
     }
 }

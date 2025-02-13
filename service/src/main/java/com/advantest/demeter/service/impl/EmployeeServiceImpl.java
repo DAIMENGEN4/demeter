@@ -28,7 +28,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeePO>
         if (optional.isPresent()) {
             EmployeeDetails employeeDetails = optional.get();
             EmployeePO employeePO = getById(employeeDetails.getEmployeeId());
-            return EmployeeDTO.parse(employeePO);
+            return EmployeeDTO.of(employeePO);
         }
         throw new IllegalStateException("Invalid authentication state: Failed to retrieve employee details from authentication context");
     }
@@ -67,13 +67,13 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeePO>
     @Override
     public EmployeeDTO getEmployeeById(Long id) {
         EmployeePO employeePO = getById(id);
-        return EmployeeDTO.parse(employeePO);
+        return EmployeeDTO.of(employeePO);
     }
 
     @Override
     public EmployeeDTO getEmployeeByUsername(String username) {
         QueryWrapper<EmployeePO> queryWrapper = new QueryWrapper<EmployeePO>().eq("username", username);
         EmployeePO employeePO = getOne(queryWrapper);
-        return EmployeeDTO.parse(employeePO);
+        return EmployeeDTO.of(employeePO);
     }
 }
