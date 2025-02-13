@@ -5,6 +5,7 @@ import {Authentication} from "@D/authentication/authentication.tsx";
 import {HomePage} from "@D/page/home-page/home-page.tsx";
 import {RegisterPage} from "@D/page/register-page/register-page.tsx";
 import {Navigation} from "@D/components/navigation/navigation.tsx";
+import {Schedule} from "@D/components/schedule/schedule.tsx";
 
 export const AppRoutes: React.FC = () => {
     return (
@@ -14,6 +15,7 @@ export const AppRoutes: React.FC = () => {
             <Route path="/register" element={<RegisterPage/>}/>
             <Route path="/home" element={<Authentication children={<HomePage/>}/>}>
                 <Route index={true} element={<Navigation/>}/>
+                <Route path={"/home/schedule"} element={<Schedule/>}/>
             </Route>
         </Routes>
     )
