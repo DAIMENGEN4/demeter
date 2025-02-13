@@ -39,12 +39,12 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeePO>
         // createDateTime mybatis-plus 自动插入, 对于新增, updaterId 和 updaterDateTime 为空!
         EmployeePO employeePO = EmployeePO.builder()
                 .id(employeeId)
-                .account(employeeDTO.getAccount())
-                .password(employeeDTO.getPassword())
-                .employeeName(employeeDTO.getEmployeeName())
-                .email(employeeDTO.getEmail())
-                .phone(employeeDTO.getPhone())
-                .isActive(employeeDTO.getIsActive())
+                .account(employeeDTO.account())
+                .password(employeeDTO.password())
+                .employeeName(employeeDTO.employeeName())
+                .email(employeeDTO.email())
+                .phone(employeeDTO.phone())
+                .isActive(employeeDTO.isActive())
                 .creatorId(employeeId)
                 .build();
         return this.save(employeePO);
@@ -54,12 +54,12 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeePO>
     public Boolean createEmployee(EmployeeDTO employeeDTO) {
         // id, creatorId, createDateTime mybatis-plus 自动插入, 对于新增, updaterId 和 updaterDateTime 为空!
         EmployeePO employeePO = EmployeePO.builder()
-                .account(employeeDTO.getAccount())
-                .password(employeeDTO.getPassword())
-                .employeeName(employeeDTO.getEmployeeName())
-                .email(employeeDTO.getEmail())
-                .phone(employeeDTO.getPhone())
-                .isActive(employeeDTO.getIsActive())
+                .account(employeeDTO.account())
+                .password(employeeDTO.password())
+                .employeeName(employeeDTO.employeeName())
+                .email(employeeDTO.email())
+                .phone(employeeDTO.phone())
+                .isActive(employeeDTO.isActive())
                 .build();
         return this.save(employeePO);
     }
