@@ -54,7 +54,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/login", "/api/v1/auth/refresh", "/public/**").permitAll()
+                        .requestMatchers("/api/v1/employee/register","/api/v1/auth/login", "/api/v1/auth/refresh", "/public/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))

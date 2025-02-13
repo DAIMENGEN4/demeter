@@ -10,6 +10,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EmployeeService extends IService<EmployeePO> {
 
+    EmployeeDTO getCurrentEmployee();
+
+    Boolean registerEmployee(EmployeeDTO employeeDTO);
+
+    Boolean createEmployee(EmployeeDTO employeeDTO);
+
     EmployeeDTO getEmployeeById(Long id);
 
     EmployeeDTO getEmployeeByAccount(String account);
