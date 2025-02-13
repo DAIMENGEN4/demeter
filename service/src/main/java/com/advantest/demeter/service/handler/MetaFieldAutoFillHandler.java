@@ -18,21 +18,21 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class MetaFieldAutoFillHandler implements MetaObjectHandler {
-    public static final String CREATE_TIME = "createTime";
-    public static final String UPDATE_TIME = "updateTime";
+    public static final String CREATE_DATE_TIME = "createDateTime";
+    public static final String UPDATE_DATE_TIME = "updateDateTime";
 
     @Override
     public void insertFill(MetaObject metaObject) {
         Optional<Long> optional = this.getCurrentEmployeeId();
         optional.ifPresent(employeeId -> this.strictInsertFill(metaObject, "creatorId", Long.class, employeeId));
-        this.strictInsertFill(metaObject, CREATE_TIME, LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, CREATE_DATE_TIME, LocalDateTime.class, LocalDateTime.now());
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         Optional<Long> optional = this.getCurrentEmployeeId();
         optional.ifPresent(employeeId -> this.strictUpdateFill(metaObject, "updaterId", Long.class, employeeId));
-        this.strictUpdateFill(metaObject, UPDATE_TIME, LocalDateTime.class, LocalDateTime.now());
+        this.strictUpdateFill(metaObject, UPDATE_DATE_TIME, LocalDateTime.class, LocalDateTime.now());
     }
 
     private Optional<Long> getCurrentEmployeeId() {
