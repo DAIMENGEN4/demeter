@@ -1,14 +1,14 @@
 import {HttpClient} from "@D/http/http-client.ts";
 
 export interface LoginRequestDTO {
-    username: string;
-    password: string;
+    readonly username: string;
+    readonly password: string;
 }
 
 export interface LoginResponseDTO {
-    token: string;
-    employeeId: string;
-    employeeName: string;
+    readonly token: string;
+    readonly employeeId: string;
+    readonly employeeName: string;
 }
 
 export class AuthenticationService {
