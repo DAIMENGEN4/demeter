@@ -20,7 +20,6 @@
             <groupId>com.advantest.demeter.common</groupId>
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.advantest.demeter.database</groupId>

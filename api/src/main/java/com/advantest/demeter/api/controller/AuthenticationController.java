@@ -42,7 +42,7 @@ public class AuthenticationController {
             refreshCookie.setPath(COOKIE_PATH);
             refreshCookie.setMaxAge(7 * 24 * 60 * 60);
             response.addCookie(refreshCookie);
-            return ResponseEntity.ok(LoginResponseVO.from(responseDTO));
+            return ResponseEntity.ok(LoginResponseVO.of(responseDTO));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(LoginResponseVO.defaultValue());
         } catch (NoSuchElementException e) {
