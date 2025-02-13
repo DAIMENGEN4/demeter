@@ -29,7 +29,7 @@ export const LoginPage: React.FC = () => {
                 failure(error.message).then();
             }
         )
-    }, [failure]);
+    }, [failure, success]);
 
     return (
         <Layout className={"login-page"} style={{
@@ -53,15 +53,21 @@ export const LoginPage: React.FC = () => {
                     >
                         <Form.Item
                             name="username"
-                            rules={[{required: true, message: 'Please enter your username!'}]}
-                        >
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter your username!'
+                                }]}>
                             <Input placeholder={"You Username"} autoComplete="username"/>
                         </Form.Item>
 
                         <Form.Item
                             name="password"
-                            rules={[{required: true, message: 'Please enter your password!'}]}
-                        >
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter your password!'
+                                }]}>
                             <Input.Password placeholder={"You Password"} autoComplete="current-password"/>
                         </Form.Item>
 
@@ -74,9 +80,7 @@ export const LoginPage: React.FC = () => {
                     <div style={{textAlign: "center", width: "100%"}}>
                         <Space>
                             <span style={{color: "#a7a5a5"}}>Don't have an account yet?</span>
-                            <a href="https://www.advantest.com/" onClick={() => {
-                                alert("敬请期待")
-                            }}>Sign up</a>
+                            <a href="#" onClick={() => navigate("/register")}>Sign up</a>
                         </Space>
                     </div>
                 </div>
