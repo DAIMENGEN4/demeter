@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
  */
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @TableName("TEAM_DB_TABLE")
 public class TeamPO {

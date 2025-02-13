@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
  */
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @TableName("PROJECT_DB_TABLE")
 public class ProjectPO {
