@@ -13,7 +13,7 @@ public enum ProjectStatus {
     IN_PROGRESS(4),
     ACCEPTANCE(5),
     COMPLETED(6),
-    CANCELED(7),
+    CANCELLED(7),
     ON_HOLD(8),
     DELAYED(9);
 
@@ -36,7 +36,7 @@ public enum ProjectStatus {
             case 4 -> IN_PROGRESS;
             case 5 -> ACCEPTANCE;
             case 6 -> COMPLETED;
-            case 7 -> CANCELED;
+            case 7 -> CANCELLED;
             case 8 -> ON_HOLD;
             case 9 -> DELAYED;
             default -> throw new IllegalArgumentException(String.format("Invalid ProjectStatus value: %d. Valid values are: 1 (NOT_STARTED), 2 (REQUIREMENTS_ANALYSIS), 3 (PLANNING), 4 (IN_PROGRESS), 5 (ACCEPTANCE), 6 (COMPLETED), 7 (CANCELED), 8 (ON_HOLD), 9 (DELAYED).", value));
