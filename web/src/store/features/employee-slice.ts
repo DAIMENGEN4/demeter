@@ -25,5 +25,6 @@ const employeeStoreSlice = createSlice({
 
 export const {
     setEmployeeIdAction,
-    setEmployeeNameAction} = employeeStoreSlice.actions;
+    setEmployeeNameAction
+} = employeeStoreSlice.actions;
 export default employeeStoreSlice.reducer;

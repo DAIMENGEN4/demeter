@@ -6,15 +6,18 @@ import {Button, Card, Collapse, Flex, Image, Layout} from "antd";
 import {useEmployeeName} from "@D/hooks/employee/use-employee-name";
 import {FeedbackIcon01} from "@D/icons/feedback-icon/feedback-icon-01";
 import {QuickIcon01} from "@D/icons/quick-icon/quick-icon-01";
+import scheduleTemplate from "@D/assets/images/svg/schedule_template.svg";
 import fullScheduleDayPng from "@D/assets/images/png/full-schedule-day.png";
 import getStartedSvg from "@D/assets/images/svg/get-started-svg.svg";
 import helpCenterSvg from "@D/assets/images/svg/help-center-svg.svg";
 import schedulerIllustrationSvg from "@D/assets/images/svg/scheduler-illustration.svg";
+import {useProjectVo} from "@D/hooks/project/use-project-vo.tsx";
+import {StarIcon02} from "@D/icons/star-icon/star-icon-02";
 
 export const ScheduleHome = () => {
     const {Header, Content} = Layout;
     const username = useEmployeeName();
-    // const projects = useDemeterSelector(state => state.projectStore.projects);
+    const projects = useProjectVo();
     const [contentActiveKeys, setContentActiveKeys] = useState<Array<string>>(["recently-visited", "update-feed"]);
     return (
         <div className={"schedule-home"}>
@@ -54,38 +57,38 @@ export const ScheduleHome = () => {
                                           key: 'recently-visited',
                                           label: <div>Recently visited</div>,
                                           children: <div>
-                                              {/*{*/}
-                                              {/*    projects.map(project => (*/}
-                                              {/*        <Flex key={project.id} vertical={true} gap={5}>*/}
-                                              {/*            <Flex justify={"center"}>*/}
-                                              {/*                <img src={scheduleTemplate} alt={"schedule template"}*/}
-                                              {/*                     style={{borderRadius: 5}}/>*/}
-                                              {/*            </Flex>*/}
-                                              {/*            <Flex justify={"space-between"}>*/}
-                                              {/*                <div style={{*/}
-                                              {/*                    fontSize: 16,*/}
-                                              {/*                    fontWeight: 700,*/}
-                                              {/*                    alignContent: "center",*/}
-                                              {/*                }}>{project.projectName}</div>*/}
-                                              {/*                <div style={{fontSize: 16}}>*/}
-                                              {/*                    <Button type={"text"} style={{width: 20}}*/}
-                                              {/*                            onClick={() => alert("收藏的逻辑")}>*/}
-                                              {/*                        <StarIcon02 width={16} height={16}*/}
-                                              {/*                                    color={"#2c2c2c"}/>*/}
-                                              {/*                    </Button>*/}
-                                              {/*                </div>*/}
-                                              {/*            </Flex>*/}
-                                              {/*            <Flex justify={"space-between"}>*/}
-                                              {/*                <div>*/}
-                                              {/*                    {project.startDateTime}*/}
-                                              {/*                </div>*/}
-                                              {/*                <div>*/}
-                                              {/*                    {project.endDateTime ? project.endDateTime : "No end date"}*/}
-                                              {/*                </div>*/}
-                                              {/*            </Flex>*/}
-                                              {/*        </Flex>*/}
-                                              {/*    ))*/}
-                                              {/*}*/}
+                                              {
+                                                  projects.map(project => (
+                                                      <Flex key={project.getId()} vertical={true} gap={5}>
+                                                          <Flex justify={"center"}>
+                                                              <img src={scheduleTemplate} alt={"schedule template"}
+                                                                   style={{borderRadius: 5}}/>
+                                                          </Flex>
+                                                          <Flex justify={"space-between"}>
+                                                              <div style={{
+                                                                  fontSize: 16,
+                                                                  fontWeight: 700,
+                                                                  alignContent: "center",
+                                                              }}>{project.getProjectName()}</div>
+                                                              <div style={{fontSize: 16}}>
+                                                                  <Button type={"text"} style={{width: 20}}
+                                                                          onClick={() => alert("收藏的逻辑")}>
+                                                                      <StarIcon02 width={16} height={16}
+                                                                                  color={"#2c2c2c"}/>
+                                                                  </Button>
+                                                              </div>
+                                                          </Flex>
+                                                          <Flex justify={"space-between"}>
+                                                              <div>
+                                                                  {project.getStartDateTime()}
+                                                              </div>
+                                                              <div>
+                                                                  {project.getEndDateTime() ? project.getEndDateTime() : "No end date"}
+                                                              </div>
+                                                          </Flex>
+                                                      </Flex>
+                                                  ))
+                                              }
                                           </div>,
                                       },
                                       {

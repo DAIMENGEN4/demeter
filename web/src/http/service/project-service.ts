@@ -11,7 +11,6 @@ export interface ProjectDTO {
     order: number;
 }
 
-
 export class ProjectService {
 
     private static instance: ProjectService;
