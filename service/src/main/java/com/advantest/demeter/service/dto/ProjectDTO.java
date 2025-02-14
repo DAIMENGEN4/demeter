@@ -17,6 +17,19 @@ public record ProjectDTO(
         Integer version,
         Integer order
 ) {
+    public static ProjectDTO defaultValue() {
+        return new ProjectDTO(
+                null,
+                "null",
+                "null",
+                "null",
+                "null",
+                null,
+                null,
+                null
+        );
+    }
+
     public static ProjectDTO of(ProjectPO projectPO) {
         return new ProjectDTO(
                 projectPO.getId(),

@@ -1,6 +1,5 @@
 package com.advantest.demeter.api.controller;
 
-import com.advantest.demeter.api.vo.LoginResponseVO;
 import com.advantest.demeter.authentication.dto.LoginRequestDTO;
 import com.advantest.demeter.authentication.dto.LoginResponseDTO;
 import com.advantest.demeter.authentication.service.AuthenticationService;
@@ -33,7 +32,7 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseVO> login(@RequestBody LoginRequestDTO loginRequest, HttpServletResponse response) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequest, HttpServletResponse response) {
         try {
             LoginResponseDTO responseDTO = authenticationService.login(loginRequest);
             String refreshToken = responseDTO.refreshToken();
@@ -42,13 +41,13 @@ public class AuthenticationController {
             refreshCookie.setPath(COOKIE_PATH);
             refreshCookie.setMaxAge(7 * 24 * 60 * 60);
             response.addCookie(refreshCookie);
-            return ResponseEntity.ok(LoginResponseVO.of(responseDTO));
+            return ResponseEntity.ok(responseDTO);
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(LoginResponseVO.defaultValue());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(LoginResponseDTO.defaultValue());
         } catch (NoSuchElementException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(LoginResponseVO.defaultValue());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(LoginResponseDTO.defaultValue());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(LoginResponseVO.defaultValue());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(LoginResponseDTO.defaultValue());
         }
     }
 

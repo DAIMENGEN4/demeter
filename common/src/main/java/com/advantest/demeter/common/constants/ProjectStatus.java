@@ -1,5 +1,7 @@
 package com.advantest.demeter.common.constants;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Create on 2025/01/01
  * Author: mengen.dai@outlook.com
@@ -21,6 +23,7 @@ public enum ProjectStatus {
         this.value = value;
     }
 
+    @JsonValue
     public int toInt() {
         return value;
     }
@@ -39,5 +42,4 @@ public enum ProjectStatus {
             default -> throw new IllegalArgumentException(String.format("Invalid ProjectStatus value: %d. Valid values are: 1 (NOT_STARTED), 2 (REQUIREMENTS_ANALYSIS), 3 (PLANNING), 4 (IN_PROGRESS), 5 (ACCEPTANCE), 6 (COMPLETED), 7 (CANCELED), 8 (ON_HOLD), 9 (DELAYED).", value));
         };
     }
-
 }

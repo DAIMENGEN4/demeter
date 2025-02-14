@@ -1,6 +1,5 @@
 package com.advantest.demeter.api.controller;
 
-import com.advantest.demeter.api.vo.ProjectVO;
 import com.advantest.demeter.service.ProjectService;
 import com.advantest.demeter.service.dto.ProjectDTO;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +22,9 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @PostMapping("/createProject")
-    public ResponseEntity<ProjectVO> createProject(@RequestBody ProjectDTO project) {
+    public ResponseEntity<ProjectDTO> createProject(@RequestBody ProjectDTO project) {
         ProjectDTO projectDTO = projectService.createProject(project);
-        ProjectVO projectVO = ProjectVO.of(projectDTO);
-        return ResponseEntity.ok(projectVO);
+        return ResponseEntity.ok(projectDTO);
     }
 
     @PostMapping("/deleteProject")
@@ -36,15 +34,14 @@ public class ProjectController {
     }
 
     @PostMapping("/updateProject")
-    public ResponseEntity<ProjectVO> updateProject(@RequestBody ProjectDTO project) {
+    public ResponseEntity<ProjectDTO> updateProject(@RequestBody ProjectDTO project) {
         ProjectDTO projectDTO = projectService.updateProject(project);
-        ProjectVO projectVO = ProjectVO.of(projectDTO);
-        return ResponseEntity.ok(projectVO);
+        return ResponseEntity.ok(projectDTO);
     }
 
     @PostMapping("/getProjectsByCurrentEmployee")
-    public ResponseEntity<List<ProjectVO>> getProjectsByCurrentEmployee() {
-        List<ProjectVO> projectVOS = projectService.getProjectsByCurrentEmployee().stream().map(ProjectVO::of).toList();
+    public ResponseEntity<List<ProjectDTO>> getProjectsByCurrentEmployee() {
+        List<ProjectDTO> projectVOS = projectService.getProjectsByCurrentEmployee();
         return ResponseEntity.ok(projectVOS);
     }
 }
