@@ -1,7 +1,7 @@
 import "./schedule.scss";
 import React, {useState} from "react";
 import {Button, Dropdown, Layout, Menu, Space} from "antd";
-import {useNavigate} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import {LeftOutlined, RightOutlined} from "@ant-design/icons";
 import {HouseIcon01} from "@D/icons/house-icon/house-icon-01";
 import {PRIMARY_COLOR} from "@D/theme/theme";
@@ -201,6 +201,9 @@ export const Schedule: React.FC = () => {
                           }
                       ]}/>
             </Sider>
+            <Layout className={"schedule-body"}>
+                <Outlet/>
+            </Layout>
         </Layout>
     )
 }
