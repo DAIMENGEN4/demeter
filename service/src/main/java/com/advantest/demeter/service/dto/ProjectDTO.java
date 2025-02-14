@@ -1,6 +1,6 @@
 package com.advantest.demeter.service.dto;
 
-import com.advantest.demeter.common.constants.ProjectStatus;
+import com.advantest.demeter.service.constants.ProjectStatus;
 import com.advantest.demeter.database.po.ProjectPO;
 
 /**

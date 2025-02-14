@@ -1,4 +1,4 @@
-package com.advantest.demeter.common.constants;
+package com.advantest.demeter.service.constants;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

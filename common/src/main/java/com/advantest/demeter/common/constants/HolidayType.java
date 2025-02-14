@@ -1,5 +1,7 @@
 package com.advantest.demeter.common.constants;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Create on 2025/01/01
  * Author: mengen.dai@outlook.com
@@ -16,6 +18,7 @@ public enum HolidayType {
         this.value = value;
     }
 
+    @JsonValue
     public int toInt() {
         return value;
     }

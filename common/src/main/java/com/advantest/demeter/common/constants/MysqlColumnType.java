@@ -1,5 +1,7 @@
 package com.advantest.demeter.common.constants;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Create on 2025/01/01
  * Author: mengen.dai@outlook.com
@@ -25,6 +27,7 @@ public enum MysqlColumnType {
     }
 
     @Override
+    @JsonValue
     public String toString() {
         return value;
     }

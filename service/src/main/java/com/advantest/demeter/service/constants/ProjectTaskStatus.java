@@ -1,4 +1,6 @@
-package com.advantest.demeter.common.constants;
+package com.advantest.demeter.service.constants;
+
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * Create on 2025/01/01
@@ -18,6 +20,7 @@ public enum ProjectTaskStatus {
         this.value = value;
     }
 
+    @JsonValue
     public int toInt() {
         return this.value;
     }
