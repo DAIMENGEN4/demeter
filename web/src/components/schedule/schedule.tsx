@@ -1,6 +1,6 @@
 import "./schedule.scss";
 import React, {useState} from "react";
-import {Button, Dropdown, Layout, Menu, Space} from "antd";
+import {Button, Layout, Menu, Space} from "antd";
 import {Outlet, useNavigate} from "react-router-dom";
 import {LeftOutlined, RightOutlined} from "@ant-design/icons";
 import {HouseIcon01} from "@D/icons/house-icon/house-icon-01";
@@ -12,6 +12,8 @@ import {MoreIcon01} from "@D/icons/more-icon/more-icon-01";
 import {AddIcon01} from "@D/icons/add-icon/add-icon-01";
 import {SortIcon01} from "@D/icons/sort-icon/sort-icon-01";
 import {ImportIcon01} from "@D/icons/import-icon/import-icon-01";
+import {PersistentDropdown} from "@D/components/persistent-dropdown/persistent-dropdown.tsx";
+import {CreateSchedule} from "@D/components/schedule/create-schedule/create-schedule.tsx";
 
 export const Schedule: React.FC = () => {
     const {Sider} = Layout;
@@ -79,11 +81,11 @@ export const Schedule: React.FC = () => {
                                                      color={selectedKeys.includes("workspace") ? PRIMARY_COLOR : "#1d1d1d"}/>,
                               label: <Space size={"small"}>
                                   <div>Workspace</div>
-                                  <Dropdown menu={{
+                                  <PersistentDropdown menu={{
                                       items: [
                                           {
-                                              key: "add-new-schedule",
-                                              label: <span>Add new schedule</span>,
+                                              key: "create-schedule",
+                                              label: <CreateSchedule/>,
                                               icon: <AddIcon01 width={15} height={15} color={"#2c2c2c"}/>
                                           },
                                           {
@@ -108,7 +110,7 @@ export const Schedule: React.FC = () => {
                                       onClick: (e) => {
                                           e.domEvent.stopPropagation();
                                           switch (e.key) {
-                                              case "add-new-schedule":
+                                              case "create-schedule":
                                                   // dispatch(setCreateScheduleModalVisible(true));
                                                   break;
                                               case "sort-schedule":
@@ -125,7 +127,7 @@ export const Schedule: React.FC = () => {
                                               onClick={(e) => e.stopPropagation()}
                                               icon={<MoreIcon01 width={16} height={16}
                                                                 color={"#2c2c2c"}/>}/>
-                                  </Dropdown>
+                                  </PersistentDropdown>
                               </Space>,
                               // children: projects.map(project => ({
                               //     key: project.id,

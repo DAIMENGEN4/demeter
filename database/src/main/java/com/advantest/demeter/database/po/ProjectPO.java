@@ -24,8 +24,11 @@ public class ProjectPO {
     private String endDateTime;
     private Integer projectStatus;
     private Integer version;
+    @TableField(value = "`order`")
     private Integer order;
+    @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
+    @TableField(fill = FieldFill.UPDATE)
     private Long updaterId;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;
