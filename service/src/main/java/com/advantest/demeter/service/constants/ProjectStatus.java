@@ -7,25 +7,31 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * Author: mengen.dai@outlook.com
  */
 public enum ProjectStatus {
-    NOT_STARTED(1),
-    REQUIREMENTS_ANALYSIS(2),
-    PLANNING(3),
-    IN_PROGRESS(4),
-    ACCEPTANCE(5),
-    COMPLETED(6),
-    CANCELLED(7),
-    ON_HOLD(8),
-    DELAYED(9);
+    NOT_STARTED("Not Started", 1),
+    REQUIREMENTS_ANALYSIS("Requirements Analysis", 2),
+    PLANNING("Planning", 3),
+    IN_PROGRESS("In Progress", 4),
+    ACCEPTANCE("Acceptance", 5),
+    COMPLETED("Completed", 6),
+    CANCELLED("Cancelled", 7),
+    ON_HOLD("On Hold", 8),
+    DELAYED("Delayed", 9);
 
     private final int value;
+    private final String label;
 
-    ProjectStatus(int value) {
+    ProjectStatus(String label, int value) {
+        this.label = label;
         this.value = value;
     }
 
     @JsonValue
     public int toInt() {
         return value;
+    }
+
+    public String toLabel() {
+        return label;
     }
 
     public static ProjectStatus fromInt(int value) {
@@ -39,7 +45,8 @@ public enum ProjectStatus {
             case 7 -> CANCELLED;
             case 8 -> ON_HOLD;
             case 9 -> DELAYED;
-            default -> throw new IllegalArgumentException(String.format("Invalid ProjectStatus value: %d. Valid values are: 1 (NOT_STARTED), 2 (REQUIREMENTS_ANALYSIS), 3 (PLANNING), 4 (IN_PROGRESS), 5 (ACCEPTANCE), 6 (COMPLETED), 7 (CANCELED), 8 (ON_HOLD), 9 (DELAYED).", value));
+            default ->
+                    throw new IllegalArgumentException(String.format("Invalid ProjectStatus value: %d. Valid values are: 1 (NOT_STARTED), 2 (REQUIREMENTS_ANALYSIS), 3 (PLANNING), 4 (IN_PROGRESS), 5 (ACCEPTANCE), 6 (COMPLETED), 7 (CANCELED), 8 (ON_HOLD), 9 (DELAYED).", value));
         };
     }
 }

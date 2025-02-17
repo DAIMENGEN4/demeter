@@ -1,9 +1,11 @@
 package com.advantest.demeter.service.impl;
 
+import com.advantest.demeter.common.dto.SelectOptionDTO;
 import com.advantest.demeter.database.mapper.ProjectMapper;
 import com.advantest.demeter.database.po.ProjectPO;
 import com.advantest.demeter.service.EmployeeService;
 import com.advantest.demeter.service.ProjectService;
+import com.advantest.demeter.service.constants.ProjectStatus;
 import com.advantest.demeter.service.dto.ProjectDTO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -26,8 +29,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectPO> im
     @Override
     @Transactional
     public ProjectDTO createProject(ProjectDTO project) {
-        Long projectId = IdWorker.getId();
-        ProjectPO projectPO = ProjectPO.builder()
+        var projectId = IdWorker.getId();
+        var projectPO = ProjectPO.builder()
                 .id(projectId)
                 .projectName(project.projectName())
                 .description(project.description())
@@ -46,8 +49,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectPO> im
     @Override
     @Transactional
     public ProjectDTO updateProject(ProjectDTO project) {
-        ProjectPO oldProject = this.getById(project.id());
-        ProjectPO projectPO = ProjectPO.builder()
+        var oldProject = this.getById(project.id());
+        var projectPO = ProjectPO.builder()
                 .id(project.id())
                 .projectName(project.projectName())
                 .description(project.description())
@@ -72,7 +75,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectPO> im
 
     @Override
     public ProjectDTO getProject(Long projectId) {
-        ProjectPO projectPO = this.getById(projectId);
+        var projectPO = this.getById(projectId);
         return ProjectDTO.of(projectPO);
     }
 
@@ -83,9 +86,14 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectPO> im
 
     @Override
     public List<ProjectDTO> getProjectsByCurrentEmployee() {
-        Long creatorId = employeeService.getCurrentEmployee().id();
-        QueryWrapper<ProjectPO> queryWrapper = new QueryWrapper<>();
+        var creatorId = employeeService.getCurrentEmployee().id();
+        var queryWrapper = new QueryWrapper<ProjectPO>();
         queryWrapper.eq("creatorId", creatorId);
         return this.list(queryWrapper).stream().map(ProjectDTO::of).toList();
+    }
+
+    @Override
+    public List<SelectOptionDTO<Integer>> getProjectStatusSelectOptions() {
+        return Arrays.stream(ProjectStatus.values()).map(status -> new SelectOptionDTO<>(status.toLabel(), status.toInt())).toList();
     }
 }
