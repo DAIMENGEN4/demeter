@@ -2,7 +2,7 @@ import {SelectOptions} from "@D/types";
 import {HttpClient} from "@D/http/http-client.ts";
 
 export interface ProjectDTO {
-    id: number;
+    id: string;
     projectName: string;
     description: string;
     startDateTime: string;

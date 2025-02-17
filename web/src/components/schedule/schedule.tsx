@@ -1,6 +1,6 @@
 import "./schedule.scss";
-import React, {useEffect, useState} from "react";
-import {Button, Layout, Menu, Space} from "antd";
+import React, {useCallback, useEffect, useState} from "react";
+import {Button, Dropdown, Layout, Menu, Space} from "antd";
 import {Outlet, useNavigate} from "react-router-dom";
 import {LeftOutlined, RightOutlined} from "@ant-design/icons";
 import {HouseIcon01} from "@D/icons/house-icon/house-icon-01";
@@ -18,13 +18,22 @@ import {ProjectDTO, ProjectService} from "@D/http/service/project-service.ts";
 import {log} from "@D/logging.ts";
 import {useDemeterDispatch} from "@D/store/store.ts";
 import {setProjectDTOS} from "@D/store/features/project-slice.ts";
+import {useProjectVo} from "@D/hooks/project/use-project-vo.tsx";
 
 export const Schedule: React.FC = () => {
     const {Sider} = Layout;
+    const projects = useProjectVo();
     const navigate = useNavigate();
-    const [collapsed, setCollapsed] = useState(false);
     const dispatch = useDemeterDispatch();
+    const [collapsed, setCollapsed] = useState(false);
     const [selectedKeys, setSelectedKeys] = useState<Array<string>>(["schedule-home"]);
+    const truncateString = useCallback((str: string, maxLength: number) => {
+        if (str.length > maxLength) {
+            return str.substring(0, maxLength) + '...';
+        } else {
+            return str;
+        }
+    }, []);
     useEffect(() => {
         ProjectService.getInstance().getProjectsByCurrentEmployeeRequest((projectDTOS: Array<ProjectDTO>) => {
             dispatch(setProjectDTOS(projectDTOS));
@@ -139,77 +148,77 @@ export const Schedule: React.FC = () => {
                                                                 color={"#2c2c2c"}/>}/>
                                   </PersistentDropdown>
                               </Space>,
-                              // children: projects.map(project => ({
-                              //     key: project.id,
-                              //     label: <Dropdown trigger={["contextMenu"]} menu={{
-                              //         items: [
-                              //             {
-                              //                 key: `${project.id}-open-in-new-table`,
-                              //                 label: 'Open in New Tab'
-                              //             },
-                              //             {key: `${project.id}-divider-1`, type: 'divider'},
-                              //             {
-                              //                 key: `${project.id}-rename-schedule`,
-                              //                 label: 'Rename Schedule'
-                              //             },
-                              //             {
-                              //                 key: `${project.id}-add-to-favorites`,
-                              //                 label: 'Add to Favorites'
-                              //             },
-                              //             {
-                              //                 key: `${project.id}-save-as-a-template`,
-                              //                 label: 'Save as a Template'
-                              //             },
-                              //             {key: `${project.id}-divider-2`, type: 'divider'},
-                              //             {
-                              //                 key: `${project.id}-delete-schedule`,
-                              //                 label: 'Delete Schedule'
-                              //             },
-                              //             {
-                              //                 key: `${project.id}-export-schedule`,
-                              //                 label: 'Export Schedule'
-                              //             },
-                              //             {
-                              //                 key: `${project.id}-share-schedule`,
-                              //                 label: 'Share Schedule'
-                              //             }],
-                              //         onClick: (e) => {
-                              //             const {key, keyPath, domEvent} = e;
-                              //             domEvent.stopPropagation();
-                              //             setSelectedKeys(keyPath);
-                              //             const projectId = key.split("-")[0];
-                              //             switch (key) {
-                              //                 case `${projectId}-open-in-new-table`:
-                              //                     window.open(`http://127.0.0.1:3000/home-page/schedule/maintenance/${projectId}`, "_blank")
-                              //                     break;
-                              //                 case `${projectId}-rename-schedule`:
-                              //                     dispatch(setRenameScheduleId(projectId));
-                              //                     dispatch(setRenameScheduleModalVisible(true));
-                              //                     break;
-                              //                 case `${projectId}-add-to-favorites`:
-                              //                     break;
-                              //                 case `${projectId}-save-as-a-template`:
-                              //                     break;
-                              //                 case `${projectId}-delete-schedule`:
-                              //                     deleteSchedule(projectId);
-                              //                     break;
-                              //                 case `${projectId}-export-schedule`:
-                              //                     break;
-                              //                 case `${projectId}-share-schedule`:
-                              //                     break;
-                              //                 default:
-                              //                     break;
-                              //             }
-                              //         }
-                              //     }}>
-                              //         <div onContextMenu={() => {
-                              //             setSelectedKeys([project.id]);
-                              //             navigate(`/home-page/schedule/maintenance/${project.id}`);
-                              //         }} onClick={() => navigate(`/home-page/schedule/maintenance/${project.id}`)}>
-                              //             {truncateString(project.projectName, 14)}
-                              //         </div>
-                              //     </Dropdown>,
-                              // })),
+                              children: projects.map(project => ({
+                                  key: project.getId(),
+                                  label: <Dropdown trigger={["contextMenu"]} menu={{
+                                      items: [
+                                          {
+                                              key: `${project.getId()}-open-in-new-table`,
+                                              label: 'Open in New Tab'
+                                          },
+                                          {key: `${project.getId()}-divider-1`, type: 'divider'},
+                                          {
+                                              key: `${project.getId()}-rename-schedule`,
+                                              label: 'Rename Schedule'
+                                          },
+                                          {
+                                              key: `${project.getId()}-add-to-favorites`,
+                                              label: 'Add to Favorites'
+                                          },
+                                          {
+                                              key: `${project.getId()}-save-as-a-template`,
+                                              label: 'Save as a Template'
+                                          },
+                                          {key: `${project.getId()}-divider-2`, type: 'divider'},
+                                          {
+                                              key: `${project.getId()}-delete-schedule`,
+                                              label: 'Delete Schedule'
+                                          },
+                                          {
+                                              key: `${project.getId()}-export-schedule`,
+                                              label: 'Export Schedule'
+                                          },
+                                          {
+                                              key: `${project.getId()}-share-schedule`,
+                                              label: 'Share Schedule'
+                                          }],
+                                      onClick: (e) => {
+                                          const {key, keyPath, domEvent} = e;
+                                          domEvent.stopPropagation();
+                                          setSelectedKeys(keyPath);
+                                          const projectId = key.split("-")[0];
+                                          switch (key) {
+                                              case `${projectId}-open-in-new-table`:
+                                                  window.open(`http://127.0.0.1:3000/home-page/schedule/maintenance/${projectId}`, "_blank")
+                                                  break;
+                                              case `${projectId}-rename-schedule`:
+                                                  // dispatch(setRenameScheduleId(projectId));
+                                                  // dispatch(setRenameScheduleModalVisible(true));
+                                                  break;
+                                              case `${projectId}-add-to-favorites`:
+                                                  break;
+                                              case `${projectId}-save-as-a-template`:
+                                                  break;
+                                              case `${projectId}-delete-schedule`:
+                                                  // deleteSchedule(projectId);
+                                                  break;
+                                              case `${projectId}-export-schedule`:
+                                                  break;
+                                              case `${projectId}-share-schedule`:
+                                                  break;
+                                              default:
+                                                  break;
+                                          }
+                                      }
+                                  }}>
+                                      <div onContextMenu={() => {
+                                          // setSelectedKeys([project.getId()]);
+                                          // navigate(`/home-page/schedule/maintenance/${project.getId()}`);
+                                      }} onClick={() => navigate(`/home-page/schedule/maintenance/${project.getId()}`)}>
+                                          {truncateString(project.getProjectName(), 14)}
+                                      </div>
+                                  </Dropdown>,
+                              })),
                           }
                       ]}/>
             </Sider>

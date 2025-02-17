@@ -1,7 +1,7 @@
 import {ProjectDTO} from "@D/http/service/project-service.ts";
 
 export class ProjectVo {
-    private readonly id: number;
+    private readonly id: string;
     private readonly projectName: string;
     private readonly description: string;
     private readonly startDateTime: string;
@@ -10,7 +10,7 @@ export class ProjectVo {
     private readonly version: number;
     private readonly order: number;
 
-    constructor(id: number, projectName: string, description: string, startDateTime: string, endDateTime: string, projectStatus: number, version: number, order: number) {
+    constructor(id: string, projectName: string, description: string, startDateTime: string, endDateTime: string, projectStatus: number, version: number, order: number) {
         this.id = id;
         this.projectName = projectName;
         this.description = description;
@@ -21,7 +21,7 @@ export class ProjectVo {
         this.order = order;
     }
 
-    getId(): number {
+    getId(): string {
         return this.id;
     }
 
