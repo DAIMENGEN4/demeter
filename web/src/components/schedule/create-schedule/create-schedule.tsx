@@ -1,7 +1,7 @@
 import {Button, Flex, Form, Input, Popover} from "antd";
 import dayjs from "dayjs";
 import {useFormDateFieldRules} from "@D/hooks/form/form-field/use-form-date-filed-rules.tsx";
-import {useCallback} from "react";
+import {useCallback, useState} from "react";
 import {ProjectDTO, ProjectService} from "@D/http/service/project-service.ts";
 import {useAntdMessage} from "@D/hooks/message/use-antd-message.tsx";
 import {useDemeterDispatch} from "@D/store/store.ts";
@@ -10,17 +10,18 @@ import {createProjectDTO} from "@D/store/features/project-slice.ts";
 export const CreateSchedule = () => {
     const {TextArea} = Input;
     const [form] = Form.useForm();
-    const dispatch = useDemeterDispatch();
+    const [open, setOpen] = useState(false);
     const {contextHolderMessage, success, failure} = useAntdMessage();
+    const dispatch = useDemeterDispatch();
     const createSchedule = useCallback((value: ProjectDTO) => {
         ProjectService.getInstance().createProjectRequest({...value, projectStatus: 1}, (project: ProjectDTO) => {
-            success("Create schedule success").then(() => dispatch(createProjectDTO(project)));
+            dispatch(createProjectDTO(project));
+            success("Create schedule success").then(() => setOpen(false));
         }, (error: Error) => failure(error.message));
     }, [success, dispatch, failure]);
     return (
-        <Popover trigger={"click"} placement={"rightTop"} content={
+        <Popover trigger={"click"} placement={"rightTop"} open={open} onOpenChange={setOpen} content={
             <div style={{minWidth: "300px"}}>
-
                 <Form name={"create-schedule"} layout={"vertical"} form={form} onFinish={createSchedule}
                       initialValues={{
                           "projectName": "New Schedule",
