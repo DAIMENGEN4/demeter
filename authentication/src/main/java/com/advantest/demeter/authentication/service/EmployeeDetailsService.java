@@ -27,18 +27,18 @@ public class EmployeeDetailsService implements UserDetailsService {
 
     @Override
     public EmployeeDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        EmployeePO employee = this.getEmployeeByUsername(username);
+        var employee = this.getEmployeeByUsername(username);
         if (employee == null) {
             throw new UsernameNotFoundException("Employee not found");
         }
-        Long employeeId = employee.getId();
-        String password = new BCryptPasswordEncoder().encode(employee.getPassword());
-        List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
+        var employeeId = employee.getId();
+        var password = new BCryptPasswordEncoder().encode(employee.getPassword());
+        var authorities = Collections.singletonList(new SimpleGrantedAuthority("admin"));
         return new EmployeeDetails(employeeId, username, password, employee.getEmployeeName(), authorities);
     }
 
     private EmployeePO getEmployeeByUsername(String username) {
-        QueryWrapper<EmployeePO> queryWrapper = new QueryWrapper<EmployeePO>().eq("username", username);
+        var queryWrapper = new QueryWrapper<EmployeePO>().eq("username", username);
         return employeeMapper.selectOne(queryWrapper);
     }
 }

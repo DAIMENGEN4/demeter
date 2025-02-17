@@ -25,19 +25,19 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public LoginResponseDTO login(LoginRequestDTO loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
-        Optional<EmployeeDetails> optional = EmployeeDetails.parse(authentication.getPrincipal());
+        var authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
+        var optional = EmployeeDetails.parse(authentication.getPrincipal());
         if (optional.isPresent()) {
-            EmployeeDetails employeeDetails = optional.get();
-            String accessToken = jwtService.generateAccessToken(employeeDetails);
-            String refreshToken = jwtService.generateRefreshToken(employeeDetails);
+            var employeeDetails = optional.get();
+            var accessToken = jwtService.generateAccessToken(employeeDetails);
+            var refreshToken = jwtService.generateRefreshToken(employeeDetails);
             return new LoginResponseDTO(accessToken, refreshToken, employeeDetails.getEmployeeId(), employeeDetails.getEmployeeName());
         }
         throw new NoSuchElementException("Failed to parse employee details");
     }
 
     public String refreshToken(String refreshToken) {
-        EmployeeDetails employeeDetails = jwtService.verifyToken(refreshToken);
+        var employeeDetails = jwtService.verifyToken(refreshToken);
         return jwtService.generateAccessToken(employeeDetails);
     }
 }

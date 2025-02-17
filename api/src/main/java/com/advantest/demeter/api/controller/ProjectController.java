@@ -23,25 +23,25 @@ public class ProjectController {
 
     @PostMapping("/createProject")
     public ResponseEntity<ProjectDTO> createProject(@RequestBody ProjectDTO project) {
-        ProjectDTO projectDTO = projectService.createProject(project);
+        var projectDTO = projectService.createProject(project);
         return ResponseEntity.ok(projectDTO);
     }
 
     @PostMapping("/deleteProject")
     public ResponseEntity<Boolean> deleteProject(@RequestBody Long projectId) {
-        Boolean result = projectService.deleteProject(projectId);
+        var result = projectService.deleteProject(projectId);
         return ResponseEntity.ok(result);
     }
 
     @PostMapping("/updateProject")
     public ResponseEntity<ProjectDTO> updateProject(@RequestBody ProjectDTO project) {
-        ProjectDTO projectDTO = projectService.updateProject(project);
+        var projectDTO = projectService.updateProject(project);
         return ResponseEntity.ok(projectDTO);
     }
 
     @PostMapping("/getProjectsByCurrentEmployee")
     public ResponseEntity<List<ProjectDTO>> getProjectsByCurrentEmployee() {
-        List<ProjectDTO> projectVOS = projectService.getProjectsByCurrentEmployee();
+        var projectVOS = projectService.getProjectsByCurrentEmployee();
         return ResponseEntity.ok(projectVOS);
     }
 }

@@ -23,7 +23,7 @@ public class JwtService {
     private static final long REFRESH_EXPIRATION = 7 * 24 * 60 * 60 * 1000; // 7天有效
 
     private String generateToken(EmployeeDetails details, long expiration) {
-        String[] authorities = details.getAuthorities()
+        var authorities = details.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .toArray(String[]::new);
@@ -50,17 +50,17 @@ public class JwtService {
     }
 
     public EmployeeDetails verifyToken(String token) {
-        DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256(SECRET_KEY))
+        var decodedJWT = JWT.require(Algorithm.HMAC256(SECRET_KEY))
                 .withIssuer("demeter")
                 .withAudience("https://demeter.advantest.com")
                 .build()
                 .verify(token);
-        String username = decodedJWT.getSubject();
-        String password = decodedJWT.getClaim("password").asString();
-        Long employeeId = decodedJWT.getClaim("employeeId").asLong();
-        String employeeName = decodedJWT.getClaim("employeeName").asString();
-        String[] authorities = decodedJWT.getClaim("authorities").asArray(String.class);
-        List<SimpleGrantedAuthority> list = Arrays.stream(authorities).map(SimpleGrantedAuthority::new).toList();
+        var username = decodedJWT.getSubject();
+        var password = decodedJWT.getClaim("password").asString();
+        var employeeId = decodedJWT.getClaim("employeeId").asLong();
+        var employeeName = decodedJWT.getClaim("employeeName").asString();
+        var authorities = decodedJWT.getClaim("authorities").asArray(String.class);
+        var list = Arrays.stream(authorities).map(SimpleGrantedAuthority::new).toList();
         return new EmployeeDetails(employeeId, username, password, employeeName, list);
     }
 }

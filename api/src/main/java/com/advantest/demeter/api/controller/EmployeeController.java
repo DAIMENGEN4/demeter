@@ -18,7 +18,7 @@ public class EmployeeController {
 
     @PostMapping("/register")
     public ResponseEntity<Boolean> registerEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        Boolean result = employeeService.registerEmployee(employeeDTO);
+        var result = employeeService.registerEmployee(employeeDTO);
         return ResponseEntity.ok(result);
     }
 }

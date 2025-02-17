@@ -34,9 +34,9 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequest, HttpServletResponse response) {
         try {
-            LoginResponseDTO responseDTO = authenticationService.login(loginRequest);
-            String refreshToken = responseDTO.refreshToken();
-            Cookie refreshCookie = new Cookie(REFRESH_TOKEN_COOKIE_NAME, refreshToken);
+            var responseDTO = authenticationService.login(loginRequest);
+            var refreshToken = responseDTO.refreshToken();
+            var refreshCookie = new Cookie(REFRESH_TOKEN_COOKIE_NAME, refreshToken);
             refreshCookie.setHttpOnly(true);
             refreshCookie.setPath(COOKIE_PATH);
             refreshCookie.setMaxAge(7 * 24 * 60 * 60);
@@ -53,11 +53,11 @@ public class AuthenticationController {
 
     @PostMapping("/refresh")
     public ResponseEntity<String> refreshToken(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
+        var cookies = request.getCookies();
         if (cookies == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No refresh token");
         }
-        String refreshToken = Arrays.stream(cookies)
+        var refreshToken = Arrays.stream(cookies)
                 .filter(c -> REFRESH_TOKEN_COOKIE_NAME.equals(c.getName()))
                 .findFirst()
                 .map(Cookie::getValue)
@@ -66,7 +66,7 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No refresh token");
         }
         try {
-            String accessToken = authenticationService.refreshToken(refreshToken);
+            var accessToken = authenticationService.refreshToken(refreshToken);
             return ResponseEntity.ok(accessToken);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid refresh token");
@@ -75,7 +75,7 @@ public class AuthenticationController {
 
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
-        Cookie refreshCookie = new Cookie(REFRESH_TOKEN_COOKIE_NAME, "");
+        var refreshCookie = new Cookie(REFRESH_TOKEN_COOKIE_NAME, "");
         refreshCookie.setHttpOnly(true);
         refreshCookie.setPath(COOKIE_PATH);
         refreshCookie.setMaxAge(0);

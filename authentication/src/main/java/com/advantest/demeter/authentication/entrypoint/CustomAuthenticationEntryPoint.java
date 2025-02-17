@@ -21,7 +21,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         response.setContentType("application/json;charset=UTF-8");
         // 移除 WWW-Authenticate 头，避免浏览器弹出认证框
         response.setHeader("WWW-Authenticate", "");
-        Map<String, Object> errorResponse = new HashMap<>();
+        var errorResponse = new HashMap<String, Object>();
         errorResponse.put("status", HttpServletResponse.SC_UNAUTHORIZED);
         errorResponse.put("error", "Unauthorized");
         errorResponse.put("message", "Access Denied. Please authenticate.");
