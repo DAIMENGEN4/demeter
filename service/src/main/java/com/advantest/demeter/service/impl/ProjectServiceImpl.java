@@ -88,7 +88,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectPO> im
     public List<ProjectDTO> getProjectsByCurrentEmployee() {
         var creatorId = employeeService.getCurrentEmployee().id();
         var queryWrapper = new QueryWrapper<ProjectPO>();
-        queryWrapper.eq("creatorId", creatorId);
+        queryWrapper.eq("creator_id", creatorId);
         return this.list(queryWrapper).stream().map(ProjectDTO::of).toList();
     }
 

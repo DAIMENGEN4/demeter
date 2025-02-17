@@ -1,5 +1,5 @@
 import "./schedule.scss";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Layout, Menu, Space} from "antd";
 import {Outlet, useNavigate} from "react-router-dom";
 import {LeftOutlined, RightOutlined} from "@ant-design/icons";
@@ -14,12 +14,22 @@ import {SortIcon01} from "@D/icons/sort-icon/sort-icon-01";
 import {ImportIcon01} from "@D/icons/import-icon/import-icon-01";
 import {PersistentDropdown} from "@D/components/persistent-dropdown/persistent-dropdown.tsx";
 import {CreateSchedule} from "@D/components/schedule/create-schedule/create-schedule.tsx";
+import {ProjectDTO, ProjectService} from "@D/http/service/project-service.ts";
+import {log} from "@D/logging.ts";
+import {useDemeterDispatch} from "@D/store/store.ts";
+import {setProjectDTOS} from "@D/store/features/project-slice.ts";
 
 export const Schedule: React.FC = () => {
     const {Sider} = Layout;
     const navigate = useNavigate();
     const [collapsed, setCollapsed] = useState(false);
+    const dispatch = useDemeterDispatch();
     const [selectedKeys, setSelectedKeys] = useState<Array<string>>(["schedule-home"]);
+    useEffect(() => {
+        ProjectService.getInstance().getProjectsByCurrentEmployeeRequest((projectDTOS: Array<ProjectDTO>) => {
+            dispatch(setProjectDTOS(projectDTOS));
+        }, error => log.error(error.message))
+    }, [dispatch]);
     return (
         <Layout className={"schedule"} hasSider={true}>
             <Sider theme={"light"} className={"schedule-sider"} trigger={null} collapsible collapsed={collapsed}>
