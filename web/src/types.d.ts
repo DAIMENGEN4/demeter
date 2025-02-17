@@ -1,3 +1,5 @@
+import {SelectProps} from "antd";
+
 export type AnyType = unknown;
 
 export type NumberDictionary = Record<string, number>;
@@ -15,3 +17,5 @@ export type JsonString = Branded<string, "JsonString">;
 export type JsonValue = string | number | boolean | null | JsonObject | JsonValue[];
 
 export type JsonObject = { [key: string]: JsonValue };
+
+export type SelectOptions = SelectProps["options"];

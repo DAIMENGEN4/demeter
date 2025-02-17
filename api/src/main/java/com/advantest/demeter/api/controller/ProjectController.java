@@ -1,13 +1,11 @@
 package com.advantest.demeter.api.controller;
 
+import com.advantest.demeter.common.dto.SelectOptionDTO;
 import com.advantest.demeter.service.ProjectService;
 import com.advantest.demeter.service.dto.ProjectDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,5 +41,11 @@ public class ProjectController {
     public ResponseEntity<List<ProjectDTO>> getProjectsByCurrentEmployee() {
         var projectVOS = projectService.getProjectsByCurrentEmployee();
         return ResponseEntity.ok(projectVOS);
+    }
+
+    @PostMapping("/getProjectStatusSelectOptions")
+    public ResponseEntity<List<SelectOptionDTO<Integer>>> getProjectStatusSelectOptions() {
+        var selectOptions = projectService.getProjectStatusSelectOptions();
+        return ResponseEntity.ok(selectOptions);
     }
 }

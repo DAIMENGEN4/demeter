@@ -1,3 +1,4 @@
+import {SelectOptions} from "@D/types";
 import {HttpClient} from "@D/http/http-client.ts";
 
 export interface ProjectDTO {
@@ -42,5 +43,10 @@ export class ProjectService {
     public getProjectsByCurrentEmployeeRequest(success: (response: Array<ProjectDTO>) => void, failure?: (error: Error) => void) {
         const url = "/v1/project/getProjectsByCurrentEmployee";
         HttpClient.post<ProjectDTO[]>(url).then(success).catch(failure);
+    }
+
+    public getProjectStatusSelectOptionsRequest(success: (response: SelectOptions) => void, failure?: (error: Error) => void) {
+        const url = "/v1/project/getProjectStatusSelectOptions";
+        HttpClient.post<SelectOptions>(url).then(success).catch(failure);
     }
 }
