@@ -4,7 +4,8 @@ import {Dropdown, DropdownProps, MenuProps} from "antd";
 export const PersistentDropdown: React.FC<DropdownProps> = (props) => {
     const [open, setOpen] = useState(false);
 
-    const handleMenuClick: MenuProps["onClick"] = () => {
+    const handleMenuClick: MenuProps["onClick"] = (e) => {
+        e.domEvent.stopPropagation();
         setOpen(true);
     };
 

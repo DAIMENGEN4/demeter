@@ -100,7 +100,7 @@ export const Schedule: React.FC = () => {
                                                      color={selectedKeys.includes("workspace") ? PRIMARY_COLOR : "#1d1d1d"}/>,
                               label: <Space size={"small"}>
                                   <div>Workspace</div>
-                                  <PersistentDropdown menu={{
+                                  <PersistentDropdown trigger={["click"]} menu={{
                                       items: [
                                           {
                                               key: "create-schedule",
