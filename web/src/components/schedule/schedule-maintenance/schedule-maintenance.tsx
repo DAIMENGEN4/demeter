@@ -41,7 +41,7 @@ export const ScheduleMaintenance = () => {
                         <Button type={"text"} icon={<MoreIcon01 width={20} height={20} color={"#000000"}/>}/>
                     </Flex>
                 </Flex>
-                <Tabs items={[
+                <Tabs indicator={{ size: (origin) => origin - 25, align: "center" }} items={[
                     {
                         key: "main-gantt",
                         label: <Button type={"text"} icon={<GanttIcon01 width={15} height={15} color={"#000000"}/>}>Main
