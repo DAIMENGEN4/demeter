@@ -7,6 +7,7 @@ import {RegisterPage} from "@D/page/register-page/register-page.tsx";
 import {Navigation} from "@D/components/navigation/navigation.tsx";
 import {Schedule} from "@D/components/schedule/schedule.tsx";
 import {ScheduleHome} from "@D/components/schedule/schedule-home/schedule-home.tsx";
+import {ScheduleMaintenance} from "@D/components/schedule/schedule-maintenance/schedule-maintenance.tsx";
 
 export const AppRoutes: React.FC = () => {
     return (
@@ -18,6 +19,7 @@ export const AppRoutes: React.FC = () => {
                 <Route index={true} element={<Navigation/>}/>
                 <Route path={"/home/schedule"} element={<Schedule/>}>
                     <Route index={true} element={<ScheduleHome/>}/>
+                    <Route path={"/home/schedule/maintenance/:projectId"} element={<ScheduleMaintenance/>}/>
                 </Route>
             </Route>
         </Routes>

@@ -213,9 +213,9 @@ export const Schedule: React.FC = () => {
                                       }
                                   }}>
                                       <div onContextMenu={() => {
-                                          // setSelectedKeys([project.getId()]);
-                                          // navigate(`/home-page/schedule/maintenance/${project.getId()}`);
-                                      }} onClick={() => navigate(`/home-page/schedule/maintenance/${project.getId()}`)}>
+                                          setSelectedKeys([project.getId()]);
+                                          navigate(`/home/schedule/maintenance/${project.getId()}`);
+                                      }} onClick={() => navigate(`/home/schedule/maintenance/${project.getId()}`)}>
                                           {truncateString(project.getProjectName(), 14)}
                                       </div>
                                   </Dropdown>,
