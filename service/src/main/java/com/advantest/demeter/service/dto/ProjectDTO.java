@@ -2,12 +2,15 @@ package com.advantest.demeter.service.dto;
 
 import com.advantest.demeter.service.constants.ProjectStatus;
 import com.advantest.demeter.database.po.ProjectPO;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 /**
  * Create on 2025/01/01
  * Author: mengen.dai@outlook.com
  */
 public record ProjectDTO(
+        @JsonSerialize(using = ToStringSerializer.class)
         Long id,
         String projectName,
         String description,

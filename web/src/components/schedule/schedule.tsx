@@ -19,6 +19,7 @@ import {log} from "@D/logging.ts";
 import {useDemeterDispatch} from "@D/store/store.ts";
 import {setProjectDTOS} from "@D/store/features/project-slice.ts";
 import {useProjectVo} from "@D/hooks/project/use-project-vo.tsx";
+import {RenameSchedule} from "@D/components/schedule/rename-schedule/rename-schedule.tsx";
 
 export const Schedule: React.FC = () => {
     const {Sider} = Layout;
@@ -159,7 +160,7 @@ export const Schedule: React.FC = () => {
                                           {key: `${project.getId()}-divider-1`, type: 'divider'},
                                           {
                                               key: `${project.getId()}-rename-schedule`,
-                                              label: 'Rename Schedule'
+                                              label: <RenameSchedule projectVO={project}/>
                                           },
                                           {
                                               key: `${project.getId()}-add-to-favorites`,

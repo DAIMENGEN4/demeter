@@ -19,12 +19,13 @@ export const CreateSchedule = () => {
         ProjectService.getInstance().createProjectRequest({...value, projectStatus: 1}, (project: ProjectDTO) => {
             dispatch(createProjectDTO(project));
             success("Create schedule success").then(() => setOpen(false));
-        }, (error: Error) => failure(error.message));
-    }, [success, dispatch, failure]);
+        }, error => failure(error.message));
+    }, [dispatch, success, failure]);
     return (
         <Popover trigger={"click"} placement={"rightTop"} open={open} onOpenChange={setOpen} content={
             <div style={{minWidth: "300px"}}>
-                <Form name={"create-schedule"} style={{ height: "510px"}} layout={"vertical"} form={form} onFinish={createSchedule}
+                <Form name={"create-schedule"} style={{height: "510px"}} layout={"vertical"} form={form}
+                      onFinish={createSchedule}
                       initialValues={{
                           "projectName": "New Schedule",
                           "projectStatus": 3,
@@ -33,7 +34,8 @@ export const CreateSchedule = () => {
                     <Form.Item layout={"vertical"} label="Schedule name" name="projectName" rules={[{required: true}]}>
                         <Input/>
                     </Form.Item>
-                    <Form.Item layout={"vertical"} label="Schedule status" name="projectStatus" rules={[{required: true}]}>
+                    <Form.Item layout={"vertical"} label="Schedule status" name="projectStatus"
+                               rules={[{required: true}]}>
                         <Select showSearch options={projectStatus} filterOption={(input, option) => {
                             return (option?.label?.toString() ?? "").toLowerCase().includes(input.toLowerCase());
                         }}/>
