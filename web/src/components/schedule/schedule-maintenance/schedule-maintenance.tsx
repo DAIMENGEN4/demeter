@@ -11,6 +11,7 @@ import {MoreIcon01} from "@D/icons/more-icon/more-icon-01";
 import {HouseIcon01} from "@D/icons/house-icon/house-icon-01";
 import {GanttIcon01} from "@D/icons/gantt-icon/gantt-icon-01.tsx";
 import {useProjectName} from "@D/hooks/project/use-project-name.tsx";
+import {MaintenanceGantt} from "@D/components/schedule/schedule-maintenance/maintenance-gantt/maintenance-gantt.tsx";
 
 export const ScheduleMaintenance = () => {
     const {projectId} = useParams<{ projectId: string }>();
@@ -46,11 +47,13 @@ export const ScheduleMaintenance = () => {
                         key: "main-gantt",
                         label: <Button type={"text"} icon={<GanttIcon01 width={15} height={15} color={"#000000"}/>}>Main
                             Gantt</Button>,
+                        children: projectId && <MaintenanceGantt projectId={projectId}/>
                     },
                     {
                         key: "main-table",
                         label: <Button type={"text"} icon={<HouseIcon01 width={15} height={15} color={"#000000"}/>}>Main
                             Table</Button>,
+                        disabled: true
                     }
                 ]} tabBarGutter={0}/>
             </div>
