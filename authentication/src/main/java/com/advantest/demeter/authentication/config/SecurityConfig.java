@@ -1,6 +1,5 @@
 package com.advantest.demeter.authentication.config;
 
-import com.advantest.demeter.authentication.entrypoint.CustomAuthenticationEntryPoint;
 import com.advantest.demeter.authentication.filter.JwtAuthenticationFilter;
 import com.advantest.demeter.authentication.service.EmployeeDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +32,6 @@ import java.util.List;
 public class SecurityConfig {
     private final EmployeeDetailsService employeeDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
     public AuthenticationManager authenticationManager(PasswordEncoder passwordEncoder) {
@@ -57,7 +55,6 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/employee/register","/api/v1/auth/login", "/api/v1/auth/refresh", "/public/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))
                 .httpBasic(Customizer.withDefaults());
 
         return http.build();

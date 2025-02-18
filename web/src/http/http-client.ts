@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(
             if (!isRefreshing) {
                 isRefreshing = true;
                 try {
-                    const response = await axiosInstance.post("api/v1/auth/refresh");
+                    const response = await axiosInstance.post("/v1/auth/refresh");
                     const newToken: string = response.data;
                     sessionStorage.setItem("token", newToken);
                     error.config.headers.Authorization = `Bearer ${response.data}`;
