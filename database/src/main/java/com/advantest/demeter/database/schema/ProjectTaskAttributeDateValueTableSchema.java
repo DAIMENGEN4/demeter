@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -24,8 +25,8 @@ public record ProjectTaskAttributeDateValueTableSchema(
         @Column(name = "TASK_ATTRIBUTE_ID", nullable = false)
         Long taskAttributeId,
 
-        @Column(name = "TASK_ATTRIBUTE_VALUE", columnDefinition = "varchar(10)", nullable = false)
-        String taskAttributeValue,
+        @Column(name = "TASK_ATTRIBUTE_VALUE", columnDefinition = "date", nullable = false)
+        LocalDate taskAttributeValue,
 
         @Column(name = "PROJECT_ID", nullable = false)
         Long projectId,

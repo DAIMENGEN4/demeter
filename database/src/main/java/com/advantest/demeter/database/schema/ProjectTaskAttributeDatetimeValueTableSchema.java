@@ -24,8 +24,8 @@ public record ProjectTaskAttributeDatetimeValueTableSchema(
         @Column(name = "TASK_ATTRIBUTE_ID", nullable = false)
         Long taskAttributeId,
 
-        @Column(name = "TASK_ATTRIBUTE_VALUE", columnDefinition = "varchar(19)", nullable = false)
-        String taskAttributeValue,
+        @Column(name = "TASK_ATTRIBUTE_VALUE", columnDefinition = "datetime", nullable = false)
+        LocalDateTime taskAttributeValue,
 
         @Column(name = "PROJECT_ID", nullable = false)
         Long projectId,

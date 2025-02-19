@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -24,8 +25,8 @@ public record HolidayTableSchema(
         @Column(name = "DESCRIPTION", columnDefinition = "text")
         String description,
 
-        @Column(name = "HOLIDAY_DATE", columnDefinition = "varchar(10)", nullable = false)
-        String holidayDate,
+        @Column(name = "HOLIDAY_DATE", columnDefinition = "date", nullable = false)
+        LocalDate holidayDate,
 
         @Column(name = "HOLIDAY_TYPE", nullable = false)
         Integer holidayType,
