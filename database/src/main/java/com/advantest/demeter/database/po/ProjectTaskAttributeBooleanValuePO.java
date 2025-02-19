@@ -23,7 +23,9 @@ public class ProjectTaskAttributeBooleanValuePO {
     private Long taskAttributeId;
     private Boolean taskAttributeValue;
     private Long projectId;
+    @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
+    @TableField(fill = FieldFill.UPDATE)
     private Long updaterId;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;

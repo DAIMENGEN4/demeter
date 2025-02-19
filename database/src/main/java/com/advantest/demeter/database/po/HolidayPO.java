@@ -25,7 +25,9 @@ public class HolidayPO {
     private Integer holidayType;
     private Boolean isRecurring;
     private Integer countryCode;
+    @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
+    @TableField(fill = FieldFill.UPDATE)
     private Long updaterId;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;

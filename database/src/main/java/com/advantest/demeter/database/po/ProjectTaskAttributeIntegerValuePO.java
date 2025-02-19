@@ -23,7 +23,9 @@ public class ProjectTaskAttributeIntegerValuePO {
     private Long taskAttributeId;
     private Integer taskAttributeValue;
     private Long projectId;
+    @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
+    @TableField(fill = FieldFill.UPDATE)
     private Long updaterId;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;

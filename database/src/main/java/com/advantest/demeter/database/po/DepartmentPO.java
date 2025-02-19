@@ -21,7 +21,9 @@ public class DepartmentPO {
     private Long id;
     private String departmentName;
     private String description;
+    @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
+    @TableField(fill = FieldFill.UPDATE)
     private Long updaterId;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;

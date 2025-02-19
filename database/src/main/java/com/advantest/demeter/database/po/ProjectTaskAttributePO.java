@@ -24,7 +24,9 @@ public class ProjectTaskAttributePO {
     private Long projectId;
     private String properties;
     private Integer order;
+    @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
+    @TableField(fill = FieldFill.UPDATE)
     private Long updaterId;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;
