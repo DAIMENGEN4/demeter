@@ -4,6 +4,8 @@ import com.advantest.demeter.common.constants.CountryCode;
 import com.advantest.demeter.common.constants.HolidayType;
 import com.advantest.demeter.database.po.HolidayPO;
 
+import java.time.LocalDate;
+
 /**
  * Create on 2025/01/01
  * Author: mengen.dai@outlook.com
@@ -12,7 +14,7 @@ public record HolidayDTO(
         Long id,
         String holidayName,
         String description,
-        String holidayDate,
+        LocalDate holidayDate,
         HolidayType holidayType,
         Boolean isRecurring,
         CountryCode countryCode

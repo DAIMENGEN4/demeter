@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -21,7 +22,7 @@ public class HolidayPO {
     private Long id;
     private String holidayName;
     private String description;
-    private String holidayDate;
+    private LocalDate holidayDate;
     private Integer holidayType;
     private Boolean isRecurring;
     private Integer countryCode;

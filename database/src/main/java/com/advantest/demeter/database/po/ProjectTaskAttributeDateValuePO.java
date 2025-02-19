@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -21,7 +22,7 @@ public class ProjectTaskAttributeDateValuePO {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;
-    private String taskAttributeValue;
+    private LocalDate taskAttributeValue;
     private Long projectId;
     @TableField(fill = FieldFill.INSERT)
     private Long creatorId;

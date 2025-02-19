@@ -21,7 +21,7 @@ public class ProjectTaskAttributeDatetimeValuePO {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;
-    private String taskAttributeValue;
+    private LocalDateTime taskAttributeValue;
     private Long projectId;
     @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
