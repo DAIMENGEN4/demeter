@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @TableName("PROJECT_TASK_ATTRIBUTE_TINYINT_VALUE_DB_TABLE")
-public class ProjectTaskAttributeTinyintValuePO {
+public class ProjectTaskAttributeTinyintValuePO  implements ProjectTaskAttributeValuePO<Boolean> {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;

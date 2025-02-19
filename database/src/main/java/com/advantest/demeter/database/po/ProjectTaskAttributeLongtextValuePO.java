@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @TableName("PROJECT_TASK_ATTRIBUTE_LONGTEXT_VALUE_DB_TABLE")
-public class ProjectTaskAttributeLongtextValuePO {
+public class ProjectTaskAttributeLongtextValuePO implements ProjectTaskAttributeValuePO<String> {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;

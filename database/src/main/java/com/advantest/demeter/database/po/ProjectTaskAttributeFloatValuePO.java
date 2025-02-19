@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @TableName("PROJECT_TASK_ATTRIBUTE_FLOAT_VALUE_DB_TABLE")
-public class ProjectTaskAttributeFloatValuePO {
+public class ProjectTaskAttributeFloatValuePO implements ProjectTaskAttributeValuePO<Float> {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;

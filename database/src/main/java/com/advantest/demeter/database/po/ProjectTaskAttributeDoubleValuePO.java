@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @TableName("PROJECT_TASK_ATTRIBUTE_DOUBLE_VALUE_DB_TABLE")
-public class ProjectTaskAttributeDoubleValuePO {
+public class ProjectTaskAttributeDoubleValuePO implements ProjectTaskAttributeValuePO<Double> {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;
