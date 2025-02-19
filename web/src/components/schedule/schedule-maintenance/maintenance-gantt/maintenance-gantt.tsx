@@ -1,6 +1,7 @@
 import "./maintenance-gantt.scss";
 import React from "react";
 import dayjs from "dayjs";
+import {useWindowSize} from "usehooks-ts";
 import {FullSchedule} from "full-flex-ui";
 import "full-flex-ui/dist/full-flex-ui.css";
 import {mockResources} from "./mock-data/mock-resources";
@@ -9,6 +10,7 @@ import {mockCheckpoints} from "./mock-data/mock-checkpoints";
 import {mockMilestones} from "./mock-data/mock-milestones";
 
 export const MaintenanceGantt: React.FC<{projectId: string}> = ({projectId}) => {
+    const {height = 0} = useWindowSize();
     console.log(projectId);
     return (
         <div className="maintenance-gantt">
@@ -18,7 +20,7 @@ export const MaintenanceGantt: React.FC<{projectId: string}> = ({projectId}) => 
                           editable={true}
                           lineHeight={40}
                           slotMinWidth={50}
-                          scheduleMaxHeight={500}
+                          scheduleMaxHeight={height - 174}
                           scheduleViewType={"Day"}
                           checkpoints={mockCheckpoints}
                           milestones={mockMilestones}
