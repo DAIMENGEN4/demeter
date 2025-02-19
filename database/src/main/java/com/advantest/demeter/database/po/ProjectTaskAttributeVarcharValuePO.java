@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @AllArgsConstructor
-@TableName("PROJECT_TASK_ATTRIBUTE_STRING_VALUE_DB_TABLE")
-public class ProjectTaskAttributeStringValuePO {
+@TableName("PROJECT_TASK_ATTRIBUTE_VARCHAR_VALUE_DB_TABLE")
+public class ProjectTaskAttributeVarcharValuePO {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;

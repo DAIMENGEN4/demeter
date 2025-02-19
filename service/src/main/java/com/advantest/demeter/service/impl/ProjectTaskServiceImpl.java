@@ -25,6 +25,6 @@ public class ProjectTaskServiceImpl extends ServiceImpl<ProjectTaskMapper, Proje
     private final ProjectTaskAttributeLongtextValueMapper taskAttributeLongtextValueMapper;
     private final ProjectTaskAttributeBigintValueMapper taskAttributeLongValueMapper;
     private final ProjectTaskAttributeMediumtextValueMapper taskAttributeMediumtextValueMapper;
-    private final ProjectTaskAttributeStringValueMapper taskAttributeStringValueMapper;
+    private final ProjectTaskAttributeVarcharValueMapper taskAttributeStringValueMapper;
     private final ProjectTaskAttributeTextValueMapper taskAttributeTextValueMapper;
 }

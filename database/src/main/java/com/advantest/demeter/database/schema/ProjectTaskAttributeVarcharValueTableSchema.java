@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
  * Author: mengen.dai@outlook.com
  */
 @Entity
-@Table(name = "PROJECT_TASK_ATTRIBUTE_STRING_VALUE_DB_TABLE")
-public record ProjectTaskAttributeStringValueTableSchema(
+@Table(name = "PROJECT_TASK_ATTRIBUTE_VARCHAR_VALUE_DB_TABLE")
+public record ProjectTaskAttributeVarcharValueTableSchema(
         @Id
         @Column(name = "ID", unique = true)
         Long id,
