@@ -1671,10 +1671,10 @@ fsevents@~2.3.2, fsevents@~2.3.3:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
-full-flex-ui@^1.0.0-alpha.4:
-  version "1.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/full-flex-ui/-/full-flex-ui-1.0.0-alpha.4.tgz#a3e9dbe701fdf21b02dda21ddbe3def007a6a2f3"
-  integrity sha512-fXYvkubuaHDAWo6MHNQREJqcYVDqP6TELcHLX5ydNJOxx9WS4yxvNhd5lhTwPWs6T2juI8xCLLqKtj/4eGl04g==
+full-flex-ui@^1.0.0-alpha.5:
+  version "1.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/full-flex-ui/-/full-flex-ui-1.0.0-alpha.5.tgz#7b6a7c0cc6e1692d1028f3eb9c51211ba863bdc6"
+  integrity sha512-hMVfQCCK2r7vrAQ6jLMo7nT2XekQ5/7UFiDmim6N/WpksNV1NYdkz7DHuRHE0C5AoekWSZzJBdysAsdM9KlAEg==
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
