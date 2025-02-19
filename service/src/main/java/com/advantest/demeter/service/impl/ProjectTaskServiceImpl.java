@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProjectTaskServiceImpl extends ServiceImpl<ProjectTaskMapper, ProjectTaskPO> implements ProjectTaskService {
     private final ProjectTaskAttributeMapper taskAttributeMapper;
-    private final ProjectTaskAttributeBooleanValueMapper taskAttributeBooleanValueMapper;
+    private final ProjectTaskAttributeTinyintValueMapper taskAttributeBooleanValueMapper;
     private final ProjectTaskAttributeDatetimeValueMapper taskAttributeDatetimeValueMapper;
     private final ProjectTaskAttributeDateValueMapper taskAttributeDateValueMapper;
     private final ProjectTaskAttributeDoubleValueMapper taskAttributeDoubleValueMapper;
     private final ProjectTaskAttributeFloatValueMapper taskAttributeFloatValueMapper;
-    private final ProjectTaskAttributeIntegerValueMapper taskAttributeIntegerValueMapper;
+    private final ProjectTaskAttributeIntValueMapper taskAttributeIntegerValueMapper;
     private final ProjectTaskAttributeJsonValueMapper taskAttributeJsonValueMapper;
     private final ProjectTaskAttributeLongtextValueMapper taskAttributeLongtextValueMapper;
     private final ProjectTaskAttributeLongValueMapper taskAttributeLongValueMapper;

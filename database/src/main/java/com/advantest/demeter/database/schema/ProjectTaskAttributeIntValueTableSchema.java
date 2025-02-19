@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
  * Author: mengen.dai@outlook.com
  */
 @Entity
-@Table(name = "PROJECT_TASK_ATTRIBUTE_BOOLEAN_VALUE_DB_TABLE")
-public record ProjectTaskAttributeBooleanValueTableSchema(
+@Table(name = "PROJECT_TASK_ATTRIBUTE_INT_VALUE_DB_TABLE")
+public record ProjectTaskAttributeIntValueTableSchema(
         @Id
         @Column(name = "ID", unique = true)
         Long id,
@@ -24,8 +24,8 @@ public record ProjectTaskAttributeBooleanValueTableSchema(
         @Column(name = "TASK_ATTRIBUTE_ID", nullable = false)
         Long taskAttributeId,
 
-        @Column(name = "TASK_ATTRIBUTE_VALUE", columnDefinition = "tinyint(1)", nullable = false)
-        Boolean taskAttributeValue,
+        @Column(name = "TASK_ATTRIBUTE_VALUE", nullable = false)
+        Integer taskAttributeValue,
 
         @Column(name = "PROJECT_ID", nullable = false)
         Long projectId,

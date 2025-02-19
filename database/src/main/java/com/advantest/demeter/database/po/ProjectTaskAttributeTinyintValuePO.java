@@ -16,12 +16,12 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @AllArgsConstructor
-@TableName("PROJECT_TASK_ATTRIBUTE_INT_VALUE_DB_TABLE")
-public class ProjectTaskAttributeIntegerValuePO {
+@TableName("PROJECT_TASK_ATTRIBUTE_TINYINT_VALUE_DB_TABLE")
+public class ProjectTaskAttributeTinyintValuePO {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;
-    private Integer taskAttributeValue;
+    private Boolean taskAttributeValue;
     private Long projectId;
     @TableField(fill = FieldFill.INSERT)
     private Long creatorId;

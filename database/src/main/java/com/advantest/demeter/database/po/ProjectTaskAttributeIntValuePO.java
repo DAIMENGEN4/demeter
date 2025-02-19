@@ -16,12 +16,12 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @AllArgsConstructor
-@TableName("PROJECT_TASK_ATTRIBUTE_BOOLEAN_VALUE_DB_TABLE")
-public class ProjectTaskAttributeBooleanValuePO {
+@TableName("PROJECT_TASK_ATTRIBUTE_INT_VALUE_DB_TABLE")
+public class ProjectTaskAttributeIntValuePO {
     private Long id;
     private Long taskId;
     private Long taskAttributeId;
-    private Boolean taskAttributeValue;
+    private Integer taskAttributeValue;
     private Long projectId;
     @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
