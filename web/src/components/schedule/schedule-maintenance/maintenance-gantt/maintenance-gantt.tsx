@@ -17,9 +17,11 @@ export const MaintenanceGantt: React.FC<{projectId: string}> = ({projectId}) => 
             <FullSchedule end={dayjs("2024-10-09")}
                           start={dayjs("2024-08-10")}
                           events={mockEvents}
-                          editable={true}
                           lineHeight={40}
+                          editable={true}
+                          selectable={true}
                           slotMinWidth={50}
+                          defaultEmptyLanes={100}
                           scheduleMaxHeight={height - 174}
                           scheduleViewType={"Day"}
                           checkpoints={mockCheckpoints}
