@@ -16,6 +16,7 @@ public record ProjectTaskDTO(
         Long id,
         String taskName,
         Long parentTaskId,
+        Long order,
         List<ProjectTaskAttributeDTO> taskAttributes,
         List<ProjectTaskAttributeValueDTO<Long>> taskAttributeLongValues,
         List<ProjectTaskAttributeValueDTO<Boolean>> taskAttributeBooleanValues,

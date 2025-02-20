@@ -22,6 +22,7 @@ public class ProjectTaskPO {
     private String taskName;
     private Long parentTaskId;
     private Long projectId;
+    private Long order;
     @TableField(fill = FieldFill.INSERT)
     private Long creatorId;
     @TableField(fill = FieldFill.UPDATE)
