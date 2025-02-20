@@ -2,13 +2,14 @@ import {persistReducer, persistStore} from "redux-persist";
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import employeeReducer from "@D/store/features/employee-slice";
 import projectReducer from "@D/store/features/project-slice";
-import {employeePersistConfig, persistConfig, projectPersistConfig} from "@D/store/config";
+import scheduleReducer from "@D/store/features/schedule-slice";
+import {employeePersistConfig, persistConfig, projectPersistConfig, schedulePersistConfig} from "@D/store/config";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 const reducers = combineReducers({
     projectStore: persistReducer(projectPersistConfig, projectReducer),
     employeeStore: persistReducer(employeePersistConfig, employeeReducer),
-    // scheduleStore: persistReducer(schedulePersistConfig, scheduleReducer),
+    scheduleStore: persistReducer(schedulePersistConfig, scheduleReducer),
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

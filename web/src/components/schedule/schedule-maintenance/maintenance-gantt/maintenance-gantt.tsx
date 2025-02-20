@@ -1,17 +1,31 @@
 import "./maintenance-gantt.scss";
-import React from "react";
+import "full-flex-ui/dist/full-flex-ui.css";
+import React, {useCallback} from "react";
 import dayjs from "dayjs";
 import {useWindowSize} from "usehooks-ts";
-import {FullSchedule} from "full-flex-ui";
-import "full-flex-ui/dist/full-flex-ui.css";
+import {FullSchedule, SelectInfoArg} from "full-flex-ui";
 import {mockResources} from "./mock-data/mock-resources";
 import {mockEvents} from "./mock-data/mock-events";
 import {mockCheckpoints} from "./mock-data/mock-checkpoints";
 import {mockMilestones} from "./mock-data/mock-milestones";
+import {CreateScheduleTask} from "@D/components/schedule/create-schedule-task/create-schedule-task.tsx";
+import {useDemeterDispatch} from "@D/store/store.ts";
+import {setTaskInitial, setVisibleCreateScheduleModal} from "@D/store/features/schedule-slice.ts";
 
-export const MaintenanceGantt: React.FC<{projectId: string}> = ({projectId}) => {
+export const MaintenanceGantt: React.FC<{ projectId: string }> = ({projectId}) => {
     const {height = 0} = useWindowSize();
+    const dispatch = useDemeterDispatch();
     console.log(projectId);
+    const selectAllow = useCallback((event: SelectInfoArg) => {
+        const extendProps = event.resourceApi.getExtendProps().get();
+        dispatch(setTaskInitial({
+            taskName: "New Task",
+            startDate: event.startDate.format("YYYY-MM-DD"),
+            endDate: event.endDate.format("YYYY-MM-DD"),
+            order: extendProps.order
+        }));
+        dispatch(setVisibleCreateScheduleModal(true));
+    }, [dispatch]);
     return (
         <div className="maintenance-gantt">
             <FullSchedule end={dayjs("2024-10-09")}
@@ -26,7 +40,9 @@ export const MaintenanceGantt: React.FC<{projectId: string}> = ({projectId}) => 
                           scheduleViewType={"Day"}
                           checkpoints={mockCheckpoints}
                           milestones={mockMilestones}
-                          resources={mockResources}/>
+                          resources={mockResources}
+                          selectAllow={selectAllow}/>
+            <CreateScheduleTask/>
         </div>
     )
 }
