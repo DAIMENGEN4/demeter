@@ -28,7 +28,7 @@ public record ProjectTaskTableSchema(
         Long projectId,
 
         @Column(name = "`ORDER`")
-        Long order,
+        Integer order,
 
         @Column(name = "CREATOR_ID", nullable = false)
         Long creatorId,
