@@ -52,7 +52,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<String> refreshToken(HttpServletRequest request) {
+    public ResponseEntity<String> refresh(HttpServletRequest request) {
         var cookies = request.getCookies();
         if (cookies == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No refresh token");

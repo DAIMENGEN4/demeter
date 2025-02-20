@@ -37,7 +37,9 @@ axiosInstance.interceptors.response.use(
             if (!isRefreshing) {
                 isRefreshing = true;
                 try {
-                    const response = await axiosInstance.post("/v1/auth/refresh");
+                    const response = await axios.post("http://127.0.0.1:9090/api/v1/auth/refresh", {}, {
+                        withCredentials: true
+                    });
                     const newToken: string = response.data;
                     sessionStorage.setItem("token", newToken);
                     error.config.headers.Authorization = `Bearer ${response.data}`;

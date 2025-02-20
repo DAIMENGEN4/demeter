@@ -1,6 +1,7 @@
 package com.advantest.demeter.authentication.filter;
 
 import com.advantest.demeter.authentication.service.JwtService;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -43,7 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
             filterChain.doFilter(request, response);
-        } catch (SecurityException e) {
+        } catch (SecurityException | TokenExpiredException e) {
             handleException(request, response, e.getMessage(), HttpServletResponse.SC_UNAUTHORIZED);
         } catch (Exception e) {
             handleException(request, response, e.getMessage(), HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
