@@ -37,8 +37,8 @@ public class ProjectTaskAttributeServiceImpl extends ServiceImpl<ProjectTaskAttr
     }
 
     @Override
-    public ProjectTaskAttributeDTO getProjectTaskAttribute(Long taskAttributeId) {
-        ProjectTaskAttributePO taskAttributePO = this.getById(taskAttributeId);
+    public ProjectTaskAttributeDTO getProjectTaskAttribute(Long id) {
+        ProjectTaskAttributePO taskAttributePO = this.getById(id);
         return ProjectTaskAttributeDTO.of(taskAttributePO);
     }
 

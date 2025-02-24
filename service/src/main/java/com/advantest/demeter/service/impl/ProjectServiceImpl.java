@@ -69,13 +69,13 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, ProjectPO> im
     }
 
     @Override
-    public Boolean deleteProject(Long projectId) {
-        return this.removeById(projectId);
+    public Boolean deleteProject(Long id) {
+        return this.removeById(id);
     }
 
     @Override
-    public ProjectDTO getProject(Long projectId) {
-        var projectPO = this.getById(projectId);
+    public ProjectDTO getProject(Long id) {
+        var projectPO = this.getById(id);
         return ProjectDTO.of(projectPO);
     }
 

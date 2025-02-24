@@ -17,9 +17,9 @@ public interface ProjectService extends IService<ProjectPO> {
 
     ProjectDTO updateProject(ProjectDTO project);
 
-    Boolean deleteProject(Long projectId);
+    Boolean deleteProject(Long id);
 
-    ProjectDTO getProject(Long projectId);
+    ProjectDTO getProject(Long id);
 
     List<ProjectDTO> getAllProjects();
 

@@ -14,7 +14,7 @@ public interface ProjectTaskAttributeService extends IService<ProjectTaskAttribu
 
     ProjectTaskAttributeDTO createProjectTaskAttribute(ProjectTaskAttributeDTO projectTaskAttribute);
 
-    ProjectTaskAttributeDTO getProjectTaskAttribute(Long taskAttributeId);
+    ProjectTaskAttributeDTO getProjectTaskAttribute(Long id);
 
     List<ProjectTaskAttributeDTO> getProjectTaskAttributes(Long projectId);
 
