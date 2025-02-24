@@ -12,6 +12,10 @@ import java.util.List;
  */
 public interface ProjectTaskAttributeService extends IService<ProjectTaskAttributePO> {
 
+    ProjectTaskAttributeDTO createProjectTaskAttribute(ProjectTaskAttributeDTO projectTaskAttribute);
+
+    ProjectTaskAttributeDTO getProjectTaskAttribute(Long taskAttributeId);
+
     List<ProjectTaskAttributeDTO> getProjectTaskAttributes(Long projectId);
 
 }

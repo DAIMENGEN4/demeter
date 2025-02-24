@@ -5,15 +5,19 @@ import com.advantest.demeter.database.po.ProjectTaskAttributePO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 /**
  * Create on 2025/01/01
  * Author: mengen.dai@outlook.com
  */
 public record ProjectTaskAttributeDTO(
+        @JsonSerialize(using = ToStringSerializer.class)
         Long id,
         String taskAttributeName,
         MysqlColumnType taskAttributeType,
+        @JsonSerialize(using = ToStringSerializer.class)
         Long projectId,
         JsonNode properties,
         Integer order

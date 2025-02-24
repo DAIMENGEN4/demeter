@@ -12,6 +12,15 @@ export interface ProjectDTO {
     order: number;
 }
 
+export interface ProjectTaskAttributeDTO {
+    id: string;
+    taskAttributeName: string;
+    taskAttributeType: string;
+    projectId: string;
+    properties: string;
+    order: number;
+}
+
 export class ProjectService {
 
     private static instance: ProjectService;
@@ -48,5 +57,10 @@ export class ProjectService {
     public getProjectStatusSelectOptionsRequest(success: (response: SelectOptions) => void, failure?: (error: Error) => void) {
         const url = "/v1/project/getProjectStatusSelectOptions";
         HttpClient.post<SelectOptions>(url).then(success).catch(failure);
+    }
+
+    public createProjectTaskAttributeRequest(params: ProjectTaskAttributeDTO, success: (response: ProjectTaskAttributeDTO) => void, failure?: (error: Error) => void) {
+        const url = "/v1/project/createProjectTaskAttribute";
+        HttpClient.post<ProjectTaskAttributeDTO>(url, {...params}).then(success).catch(failure);
     }
 }
