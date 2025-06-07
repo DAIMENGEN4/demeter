@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
-import {FullDraggableModal} from "full-flex-ui";
 import {useDemeterDispatch, useDemeterSelector} from "@D/store/store.ts";
 import {Form, Input, InputNumber} from "antd";
 import {useFormDateFieldRules} from "@D/hooks/form/form-field/use-form-date-filed-rules.tsx";
 import {setVisibleCreateScheduleModal} from "@D/store/features/schedule-slice.ts";
+import {DraggableModal} from "@D/components/common/draggable-modal/draggable-modal.tsx";
 
 export const CreateScheduleTask: React.FC = () => {
     const [form] = Form.useForm();
@@ -14,15 +14,15 @@ export const CreateScheduleTask: React.FC = () => {
         form.setFieldsValue(taskInitial);
     }, [form, taskInitial]);
     return (
-        <FullDraggableModal classNames={{content: "create-schedule-task-draggable-modal"}}
-                            open={visible}
-                            onCancel={() => dispatch(setVisibleCreateScheduleModal(false))}
-                            closable={true}
-                            style={{top: 80}}
-                            maskClosable={false}
-                            cancelText={"Cancel"}
-                            okText={"Create"}
-                            onOk={form.submit}>
+        <DraggableModal classNames={{content: "create-schedule-task-draggable-modal"}}
+                        open={visible}
+                        onCancel={() => dispatch(setVisibleCreateScheduleModal(false))}
+                        closable={true}
+                        style={{top: 80}}
+                        maskClosable={false}
+                        cancelText={"Cancel"}
+                        okText={"Create"}
+                        onOk={form.submit}>
             <Form name={"create-schedule-task"} layout={"vertical"} form={form}
                   onFinish={(values) => {
                       console.log(values);
@@ -46,6 +46,6 @@ export const CreateScheduleTask: React.FC = () => {
                     <InputNumber/>
                 </Form.Item>
             </Form>
-        </FullDraggableModal>
+        </DraggableModal>
     )
 }

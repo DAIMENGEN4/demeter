@@ -14,9 +14,8 @@
     "@ant-design/pro-table": "^3.18.4",
     "@reduxjs/toolkit": "^2.5.1",
     "antd": "^5.24.0",
-    "axios": "^1.7.9",
+    "axios": "1.8.2",
     "dayjs": "^1.11.13",
-    "full-flex-ui": "^1.0.0-alpha.7",
     "lodash": "^4.17.21",
     "papaparse": "^5.5.2",
     "react": "^18.3.1",
@@ -27,6 +26,7 @@
     "redux-persist": "^6.0.0",
     "sass": "^1.84.0",
     "sass-loader": "^16.0.4",
+    "schedulant": "^1.0.0",
     "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
