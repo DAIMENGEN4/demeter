@@ -13,33 +13,33 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "PROJECT_TASK_ATTRIBUTE_INT_VALUE_DB_TABLE")
-public record ProjectTaskAttributeIntValueTableSchema(
+public class ProjectTaskAttributeIntValueTableSchema {
+
         @Id
         @Column(name = "ID", unique = true)
-        Long id,
+        private Long id;
 
         @Column(name = "TASK_ID", nullable = false)
-        Long taskId,
+        private Long taskId;
 
         @Column(name = "TASK_ATTRIBUTE_ID", nullable = false)
-        Long taskAttributeId,
+        private Long taskAttributeId;
 
         @Column(name = "TASK_ATTRIBUTE_VALUE", nullable = false)
-        Integer taskAttributeValue,
+        private Integer taskAttributeValue;
 
         @Column(name = "PROJECT_ID", nullable = false)
-        Long projectId,
+        private Long projectId;
 
         @Column(name = "CREATOR_ID", nullable = false)
-        Long creatorId,
+        private Long creatorId;
 
         @Column(name = "UPDATER_ID")
-        Long updaterId,
+        private Long updaterId;
 
         @Column(name = "CREATE_DATE_TIME", columnDefinition = "datetime DEFAULT '2022-10-08 00:00:00'", nullable = false)
-        LocalDateTime createDateTime,
+        private LocalDateTime createDateTime;
 
         @Column(name = "UPDATE_DATE_TIME", columnDefinition = "datetime")
-        LocalDateTime updateDateTime
-) {
+        private LocalDateTime updateDateTime;
 }

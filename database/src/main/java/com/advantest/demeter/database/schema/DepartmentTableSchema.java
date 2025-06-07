@@ -13,27 +13,26 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "DEPARTMENT_DB_TABLE")
-public record DepartmentTableSchema(
+public class DepartmentTableSchema {
         @Id
         @Column(name = "ID", unique = true)
-        Long id,
+        private Long id;
 
         @Column(name = "DEPARTMENT_NAME", columnDefinition = "varchar(255)", nullable = false)
-        String departmentName,
+        private String departmentName;
 
         @Column(name = "DESCRIPTION", columnDefinition = "text")
-        String description,
+        private String description;
 
         @Column(name = "CREATOR_ID", nullable = false)
-        Long creatorId,
+        private Long creatorId;
 
         @Column(name = "UPDATER_ID")
-        Long updaterId,
+        private Long updaterId;
 
         @Column(name = "CREATE_DATE_TIME", columnDefinition = "datetime DEFAULT '2022-10-08 00:00:00'", nullable = false)
-        LocalDateTime createDateTime,
+        private LocalDateTime createDateTime;
 
         @Column(name = "UPDATE_DATE_TIME", columnDefinition = "datetime")
-        LocalDateTime updateDateTime
-) {
+        private LocalDateTime updateDateTime;
 }

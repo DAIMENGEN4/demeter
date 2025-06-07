@@ -14,39 +14,39 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "HOLIDAY_DB_TABLE")
-public record HolidayTableSchema(
+public class HolidayTableSchema {
+
         @Id
         @Column(name = "ID", unique = true)
-        Long id,
+        private Long id;
 
         @Column(name = "HOLIDAY_NAME", columnDefinition = "varchar(255)", nullable = false)
-        String holidayName,
+        private String holidayName;
 
         @Column(name = "DESCRIPTION", columnDefinition = "text")
-        String description,
+        private String description;
 
         @Column(name = "HOLIDAY_DATE", columnDefinition = "date", nullable = false)
-        LocalDate holidayDate,
+        private LocalDate holidayDate;
 
         @Column(name = "HOLIDAY_TYPE", nullable = false)
-        Integer holidayType,
+        private Integer holidayType;
 
         @Column(name = "IS_RECURRING", columnDefinition = "tinyint(1) default 0", nullable = false)
-        Boolean isRecurring,
+        private Boolean isRecurring;
 
         @Column(name = "COUNTRY_CODE", nullable = false)
-        Integer countryCode,
+        private Integer countryCode;
 
         @Column(name = "CREATOR_ID", nullable = false)
-        Long creatorId,
+        private Long creatorId;
 
         @Column(name = "UPDATER_ID")
-        Long updaterId,
+        private Long updaterId;
 
         @Column(name = "CREATE_DATE_TIME", columnDefinition = "datetime DEFAULT '2022-10-08 00:00:00'", nullable = false)
-        LocalDateTime createDateTime,
+        private LocalDateTime createDateTime;
 
         @Column(name = "UPDATE_DATE_TIME", columnDefinition = "datetime")
-        LocalDateTime updateDateTime
-) {
+        private LocalDateTime updateDateTime;
 }

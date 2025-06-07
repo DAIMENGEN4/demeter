@@ -13,39 +13,39 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "EMPLOYEE_DB_TABLE")
-public record EmployeeTableSchema(
+public class EmployeeTableSchema {
+
         @Id
         @Column(name = "ID", unique = true)
-        Long id,
+        private Long id;
 
         @Column(name = "USERNAME", columnDefinition = "varchar(255)", nullable = false)
-        String username,
+        private String username;
 
         @Column(name = "PASSWORD", columnDefinition = "varchar(255)", nullable = false)
-        String password,
+        private String password;
 
         @Column(name = "EMPLOYEE_NAME", columnDefinition = "varchar(255)", nullable = false)
-        String employeeName,
+        private String employeeName;
 
         @Column(name = "EMAIL", columnDefinition = "varchar(255)", nullable = false)
-        String email,
+        private String email;
 
         @Column(name = "PHONE", columnDefinition = "varchar(15)")
-        String phone,
+        private String phone;
 
         @Column(name = "IS_ACTIVE", columnDefinition = "tinyint(1)  default 0", nullable = false)
-        Boolean isActive,
+        private Boolean isActive;
 
         @Column(name = "CREATOR_ID", nullable = false)
-        Long creatorId,
+        private Long creatorId;
 
         @Column(name = "UPDATER_ID")
-        Long updaterId,
+        private Long updaterId;
 
         @Column(name = "CREATE_DATE_TIME", columnDefinition = "datetime DEFAULT '2022-10-08 00:00:00'", nullable = false)
-        LocalDateTime createDateTime,
+        private LocalDateTime createDateTime;
 
         @Column(name = "UPDATE_DATE_TIME", columnDefinition = "datetime")
-        LocalDateTime updateDateTime
-) {
+        private LocalDateTime updateDateTime;
 }

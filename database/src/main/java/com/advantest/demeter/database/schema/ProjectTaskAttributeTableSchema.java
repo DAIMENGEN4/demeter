@@ -13,36 +13,36 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "PROJECT_TASK_ATTRIBUTE_DB_TABLE")
-public record ProjectTaskAttributeTableSchema(
+public class ProjectTaskAttributeTableSchema {
+
         @Id
         @Column(name = "ID", unique = true)
-        Long id,
+        private Long id;
 
         @Column(name = "TASK_ATTRIBUTE_NAME", columnDefinition = "varchar(255)", nullable = false)
-        String taskAttributeName,
+        private String taskAttributeName;
 
         @Column(name = "TASK_ATTRIBUTE_TYPE", columnDefinition = "varchar(20)", nullable = false)
-        String taskAttributeType,
+        private String taskAttributeType;
 
         @Column(name = "PROJECT_ID", nullable = false)
-        Long projectId,
+        private Long projectId;
 
         @Column(name = "PROPERTIES", columnDefinition = "json")
-        String properties,
+        private String properties;
 
         @Column(name = "`ORDER`", nullable = false)
-        Integer order,
+        private Integer order;
 
         @Column(name = "CREATOR_ID", nullable = false)
-        Long creatorId,
+        private Long creatorId;
 
         @Column(name = "UPDATER_ID")
-        Long updaterId,
+        private Long updaterId;
 
         @Column(name = "CREATE_DATE_TIME", columnDefinition = "datetime DEFAULT '2022-10-08 00:00:00'", nullable = false)
-        LocalDateTime createDateTime,
+        private LocalDateTime createDateTime;
 
         @Column(name = "UPDATE_DATE_TIME", columnDefinition = "datetime")
-        LocalDateTime updateDateTime
-) {
+        private LocalDateTime updateDateTime;
 }
